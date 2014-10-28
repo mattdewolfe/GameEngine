@@ -3,7 +3,11 @@
 
 class Camera
 {
+public:
+	Camera();
+	~Camera();
 
+	bool Init();
 };
 
 #endif

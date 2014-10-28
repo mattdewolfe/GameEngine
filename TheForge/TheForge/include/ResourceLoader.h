@@ -3,7 +3,11 @@
 
 class ResourceLoader
 {
+public:
+	ResourceLoader();
+	~ResourceLoader();
 
+	bool Init();
 };
 
 #endif

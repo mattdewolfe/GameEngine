@@ -4,8 +4,10 @@
 class InputManager
 {
 public:
-	InputManager() {}
-	~InputManager() {}
+	InputManager();
+	~InputManager();
+
+	bool Init();
 };
 
 #endif

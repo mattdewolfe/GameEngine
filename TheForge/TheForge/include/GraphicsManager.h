@@ -1,7 +1,9 @@
 #ifndef GRAPHICSMANAGER_H
 #define GRAPHICSMANAGER_H
 
+#include <Windows.h>
 #include "ECS\GameEntity.h"
+#include "Camera.h"
 
 class GraphicsManager
 {
@@ -9,7 +11,7 @@ public:
 	GraphicsManager();
 	~GraphicsManager();
 
-	bool Init();
+	bool Init(int, int, HWND, Camera*);
 	void Shutdown();
 	void EngineRender();
 	void D3D_Render();

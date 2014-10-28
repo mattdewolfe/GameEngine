@@ -9,7 +9,11 @@
 #include "GraphicsManager.h"
 #include "InputManager.h"
 #include "ResourceLoader.h"
-#include "EventHandler.h"
+#include "EventManager.h"
+#include "DebugManager.h"
+#include "ScriptManager.h"
+#include "Camera.h"
+#include "Timer.h"
 
 class GameEngine
 {
@@ -38,17 +42,23 @@ public:
 	void CalculateFPS();
 
 private:
-	LPCWSTR _applicationName;
-	HINSTANCE _hinstance;
-	HWND _hwnd;
-	/*
+	LPCWSTR applicationName;
+	HINSTANCE hInstance;
+	HWND hwnd;
+	
 	AudioManager* audioManager;
 	ECSManager* ecsManager;
-	GraphicsManager* graphicsManager;
 	InputManager* inputManager;
-	EventHandler* eventHandler;
-	resourceLoader* resourceLoader;
-	*/
+	EventManager* eventManager;
+	ScriptManager* scriptManager;
+	DebugManager* debugManager;
+	ResourceLoader* resourceLoader;
+
+	GraphicsManager* graphicsManager;
+	Camera* camera;
+
+	Timer timer;
+	bool isPaused;
 
 	float framesPerSecond;
 

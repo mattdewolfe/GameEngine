@@ -3,7 +3,11 @@
 
 class DebugManager
 {
+public:
+	DebugManager();
+	~DebugManager();
 
+	bool Init();
 };
 
 #endif

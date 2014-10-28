@@ -3,7 +3,11 @@
 
 class ScriptManager
 {
+public:
+	ScriptManager();
+	~ScriptManager();
 
+	bool Init();
 };
 
 #endif
