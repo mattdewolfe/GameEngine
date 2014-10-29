@@ -44,7 +44,7 @@ public:
 private:
 	LPCWSTR applicationName;
 	HINSTANCE hInstance;
-	HWND hwnd;
+	HWND hWnd;
 	
 	AudioManager* audioManager;
 	ECSManager* ecsManager;

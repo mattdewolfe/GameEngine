@@ -26,6 +26,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\GameEngine.cpp" />
+    <ClCompile Include="src\GraphicsManager.cpp" />
     <ClCompile Include="src\source.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
@@ -59,8 +60,8 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(MSBuildProjectDirectory)\include\;$(IncludePath)</IncludePath>
-    <LibraryPath>$MSBuildProjectDirectory)\src\;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(MSBuildProjectDirectory)\include\;C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Include;$(IncludePath)</IncludePath>
+    <LibraryPath>$MSBuildProjectDirectory)\src\;C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Lib\x86;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
