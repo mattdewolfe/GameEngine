@@ -16,7 +16,7 @@
     <ClInclude Include="include\ECS\ECSManager.h" />
     <ClInclude Include="include\ECS\IGameComponent.h" />
     <ClInclude Include="include\ECS\GameEntity.h" />
-    <ClInclude Include="include\EventHandler.h" />
+    <ClInclude Include="include\EventManager.h" />
     <ClInclude Include="include\GameEngine.h" />
     <ClInclude Include="include\GraphicsManager.h" />
     <ClInclude Include="include\InputManager.h" />

@@ -1,11 +1,6 @@
 #include "GameEngine.h"
 
-// DELETE temporary function definition
-// the WindowProc function prototype
-LRESULT CALLBACK WindowProc(HWND hWnd,
-                         UINT message,
-                         WPARAM wParam,
-                         LPARAM lParam);
+
 
 GameEngine::GameEngine()
 {
@@ -31,14 +26,14 @@ bool GameEngine::Init()
 
 	// Setup files to be loaded by resource loader
 
-	/*inputManager = new InputManager();
+	inputManager = new InputManager();
 	if (!inputManager)
 	{
 		return false;
 	}
 	initResult = inputManager->Init();
 	
-	camera = new Camera();
+	/*camera = new Camera();
 	if (!camera)
 	{
 		return false;
@@ -56,7 +51,7 @@ bool GameEngine::Init()
 		return false;
 	}
 
-	/*audioManager = new AudioManager;
+	audioManager = new AudioManager;
 	if (!audioManager)
 	{
 		return false;
@@ -92,11 +87,15 @@ bool GameEngine::Init()
 		return false;
 	}
 
+	/*s
 	debugManager = new DebugManager();
+	*/
 	
+	timer = Timer();
 	timer.Init();
+	framesPerSecond = 0;
 
-	framesPerSecond = 0;*/
+	isPaused = false;
 
 	return initResult;
 }
@@ -104,6 +103,8 @@ bool GameEngine::Init()
 // Initialize window and windows elements
 bool GameEngine::InitializeWindows(int _width, int _height)
 {
+	ApplicationHandle = this;
+
     // this struct holds information for the window class
     WNDCLASSEX wc;
 
@@ -162,11 +163,71 @@ bool GameEngine::InitializeWindows(int _width, int _height)
     //return msg.wParam;
 	return true;
 }
-// Update game world (based on frame time)
-void GameEngine::Update(float _deltaTime)
-{
 
+//handles the main loop.
+void GameEngine::Run()
+{
+	//** DEMONSTRATION of sustainability.
+
+	MSG message;
+	ZeroMemory(&message, sizeof(MSG));
+
+	bool isFinished, isUpdatable;
+	
+	isFinished = false;
+	while(!isFinished)
+	{
+		if (PeekMessage(&message, NULL, 0, 0, PM_REMOVE))
+		{
+			TranslateMessage(&message);
+			DispatchMessage(&message);
+		}
+
+		if (message.message == WM_QUIT)
+		{
+			isFinished = true;
+		}
+		else
+		{
+			isUpdatable = Update();
+			if(!isUpdatable)
+			{
+				isFinished = true;
+			}
+		}
+
+		if(inputManager->Quit())
+		{
+			isFinished = true;
+		}
+	}
+
+	return;
 }
+
+// Update game world (based on frame time)
+// In other words, our game loop.
+bool GameEngine::Update()
+{
+	float tick;
+
+	if(isPaused)
+	{
+		return true;
+	}
+
+	timer.Update();
+	tick = timer.GetDeltaTime();
+
+	inputManager->Update(tick);
+	eventManager->Update(tick);
+	audioManager->Update(tick);
+	scriptManager->Update(tick);
+	RenderFrame();
+	
+	return true;
+}
+
 // Renders the next frame
 void GameEngine::RenderFrame()
 {
@@ -175,7 +236,6 @@ void GameEngine::RenderFrame()
 // Hault update calls by engine
 void GameEngine::Pause()
 {
-
 }
 // Called at termination, free memory, clear pointers, etc
 void GameEngine::Shutdown()
@@ -188,17 +248,31 @@ void GameEngine::ShutDownWindows()
 
 }
 // System for passing calls to other classes
-void GameEngine::MessageHandler()
+LRESULT CALLBACK  GameEngine::MessageHandler(HWND _hwnd, UINT _umsg, WPARAM _wparam, LPARAM _lparam)
 {
-
+	switch(_umsg)
+	{
+	//input.
+	case WM_KEYDOWN:
+		inputManager->KeyDown((unsigned int)_wparam);
+		break;
+	case WM_KEYUP:
+		inputManager->KeyUp((unsigned int)_wparam);
+		break;
+	//effectively, clicking the closer arrow.
+	case WM_DESTROY:
+		 PostQuitMessage(0);
+		break;
+	default:
+		return DefWindowProc(_hwnd, _umsg, _wparam, _lparam);
+		break;
+	}
 }
 // Used to determine time between frames
 void GameEngine::CalculateFPS()
 {
 
 }
-
-
 
 // DELETE? temporary window handling funcion
 // this is from a tutorial, intended as a main loop. Handles window events (like clicking the red x to close a window, and maybe resizing?)
@@ -213,7 +287,12 @@ LRESULT CALLBACK WindowProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lPara
                 // close the application entirely
                 PostQuitMessage(0);
                 return 0;
-            } break;
+            } 
+			break;
+		default:
+		{
+			return ApplicationHandle->MessageHandler(hWnd, message, wParam, lParam);
+		}
     }
 
     // Handle any messages the switch statement didn't

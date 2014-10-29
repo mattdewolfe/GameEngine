@@ -27,7 +27,9 @@ public:
 	// Initialize window with width height values
 	bool InitializeWindows(int, int);
 	// Update game world (based on frame time)
-	void Update(float deltaTime);
+	bool Update();
+	// handles the main loop of the engine.
+	void Run();
 	// Renders the next frame
 	void RenderFrame();
 	// Hault update calls by engine
@@ -37,7 +39,7 @@ public:
 	// Shutdown calls specific to window(s)
 	void ShutDownWindows();
 	// System for passing calls to other classes
-	void MessageHandler();
+	LRESULT CALLBACK  MessageHandler(HWND _hwnd, UINT _umsg, WPARAM _wparam, LPARAM _lparam);
 	// Used to determine time between frames
 	void CalculateFPS();
 
@@ -63,5 +65,10 @@ private:
 	float framesPerSecond;
 
 };
+
+// DELETE temporary function definition
+// the WindowProc function prototype
+static LRESULT CALLBACK WindowProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
+static GameEngine* ApplicationHandle = NULL;
 
 #endif

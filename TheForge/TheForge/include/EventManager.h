@@ -8,6 +8,8 @@ public:
 	~EventManager();
 
 	bool Init();
+	void Update(float _dt);
+	void Shutdown();
 };
 
 #endif
