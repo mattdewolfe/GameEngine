@@ -10,11 +10,11 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR pScmdline,
 	}
 	//engine->Run();
 
-	// DELETE used for Debug, replace with a proper game loop
+	// used for Debug, will be properly called inside game loop
 	engine->RenderFrame();
-	while (true) {}
-
+	
 	engine->Shutdown();
+	
 	delete engine;
 	engine = 0;
 
