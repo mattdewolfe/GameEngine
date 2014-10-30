@@ -66,7 +66,6 @@ private:
 
 };
 
-// DELETE temporary function definition
 // the WindowProc function prototype
 static LRESULT CALLBACK WindowProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
 static GameEngine* ApplicationHandle = NULL;

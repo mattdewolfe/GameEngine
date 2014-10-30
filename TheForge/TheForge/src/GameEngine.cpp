@@ -139,28 +139,6 @@ bool GameEngine::InitializeWindows(int _width, int _height)
 
     // display the window on the screen
     ShowWindow(hWnd, 1);
-
-	// the following code is from a tutorial, likely needs to be deleted/reworked
-	// it deals with the WindowProc function, which deals with input events from the window. 
-	// still need to research more into the importance of this function, and if/where we need to relocate it
-
-    //// enter the main loop:
-
-    //// this struct holds Windows event messages
-    //MSG msg;
-
-    //// wait for the next message in the queue, store the result in 'msg'
-    //while(GetMessage(&msg, NULL, 0, 0))
-    //{
-    //    // translate keystroke messages into the right format
-    //    TranslateMessage(&msg);
-
-    //    // send the message to the WindowProc function
-    //    DispatchMessage(&msg);
-    //}
-
-    //// return this part of the WM_QUIT message to Windows
-    //return msg.wParam;
 	return true;
 }
 
@@ -274,8 +252,7 @@ void GameEngine::CalculateFPS()
 
 }
 
-// DELETE? temporary window handling funcion
-// this is from a tutorial, intended as a main loop. Handles window events (like clicking the red x to close a window, and maybe resizing?)
+// Handles window events. Need to research proper use of this function
 LRESULT CALLBACK WindowProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
     // sort through and find what code to run for the message given
