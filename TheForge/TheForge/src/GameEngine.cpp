@@ -1,7 +1,5 @@
 #include "GameEngine.h"
 
-
-
 GameEngine::GameEngine()
 {
 
@@ -25,6 +23,17 @@ bool GameEngine::Init()
 	InitializeWindows(0, 0);
 
 	// Setup files to be loaded by resource loader
+	resourceLoader = new ResourceLoader();
+	if(!resourceLoader)
+	{
+		return false;
+	}
+
+	initResult = resourceLoader->Init();
+	if (initResult == false)
+	{
+		return false;
+	}
 
 	inputManager = new InputManager();
 	if (!inputManager)
@@ -33,11 +42,11 @@ bool GameEngine::Init()
 	}
 	initResult = inputManager->Init();
 	
-	/*camera = new Camera();
+	camera = new Camera();
 	if (!camera)
 	{
 		return false;
-	}*/
+	}
 
 	graphicsManager = new GraphicsManager();
 	if (!graphicsManager)
@@ -87,10 +96,8 @@ bool GameEngine::Init()
 		return false;
 	}
 
-	/*s
 	debugManager = new DebugManager();
-	*/
-	
+
 	timer = Timer();
 	timer.Init();
 	framesPerSecond = 0;
@@ -218,7 +225,23 @@ void GameEngine::Pause()
 // Called at termination, free memory, clear pointers, etc
 void GameEngine::Shutdown()
 {
+	// Call shutdown on all game systems
+	// in reverse order of intialization
+	scriptManager->Shutdown();
+	eventManager->Shutdown();
+	audioManager->Shutdown();
 	graphicsManager->Shutdown();
+	inputManager->Shutdown();
+	resourceLoader->Shutdown();
+	
+	// Free memory and delete pointers
+	SAFE_DELETE(scriptManager);
+	SAFE_DELETE(eventManager);
+	SAFE_DELETE(audioManager);
+	SAFE_DELETE(graphicsManager);
+	SAFE_DELETE(camera);
+	SAFE_DELETE(inputManager);
+	SAFE_DELETE(resourceLoader);
 }
 // Shutdown calls specific to window(s)
 void GameEngine::ShutDownWindows()
@@ -226,7 +249,7 @@ void GameEngine::ShutDownWindows()
 
 }
 // System for passing calls to other classes
-LRESULT CALLBACK  GameEngine::MessageHandler(HWND _hwnd, UINT _umsg, WPARAM _wparam, LPARAM _lparam)
+LRESULT CALLBACK GameEngine::MessageHandler(HWND _hwnd, UINT _umsg, WPARAM _wparam, LPARAM _lparam)
 {
 	switch(_umsg)
 	{
@@ -275,4 +298,3 @@ LRESULT CALLBACK WindowProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lPara
     // Handle any messages the switch statement didn't
     return DefWindowProc (hWnd, message, wParam, lParam);
 }
-

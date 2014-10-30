@@ -1,6 +1,7 @@
 #ifndef GAMEENGINE_H
 #define GAMEENGINE_H
-
+// Macro for deleting pointers - ensure memory cleanup
+#define SAFE_DELETE(p) { if (p) { delete(p); p = NULL; } }
 #include <Windows.h>
 #include <WindowsX.h>
 
