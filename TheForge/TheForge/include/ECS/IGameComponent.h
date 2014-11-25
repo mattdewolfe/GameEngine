@@ -1,13 +1,23 @@
 #ifndef IGAMECOMPONENT_H
 #define IGAMECOMPONENT_H
 
-// Allows use to c++ managed pointers
+// Allows use of c++ managed pointers
 #include <memory>
+
+struct float3
+{
+public:
+	float3() : x(0), y(0), z(0) {};
+	float3(float _x, float _y, float _z) : x(_x), y(_y), z(_z) {};
+	float x;
+	float y;
+	float z;
+};
 
 enum GameComponentType
 {
 	MESH = 0, 
-	COLLIDER, 
+	BOX_COLLIDER, 
 	RIGID_BODY, 
 	AI, 
 	STATS, 
@@ -18,8 +28,11 @@ enum GameComponentType
 class IGameComponent 
 {
 	public:
+		IGameComponent(GameComponentType _type);
+		~IGameComponent();
 		virtual bool Init() = 0;
 		virtual void Destroy() = 0;
+		virtual void Update(float _deltaTime) = 0;
 		// Get this components type
 		GameComponentType GetComponentType();
 		// Get this components GameID

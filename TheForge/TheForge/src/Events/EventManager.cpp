@@ -1,4 +1,4 @@
-#include "EventManager.h"
+#include "Events\EventManager.h"
 
 EventManager::EventManager()
 {
@@ -8,6 +8,14 @@ EventManager::EventManager()
 bool EventManager::Init()
 {
 	return true;
+}
+
+void EventManager::Update(float _dt)
+{
+}
+	
+void EventManager::Shutdown()
+{
 }
 
 EventManager::~EventManager()

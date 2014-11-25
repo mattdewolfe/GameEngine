@@ -1,4 +1,4 @@
-#include "ScriptManager.h"
+#include "Script\ScriptManager.h"
 
 ScriptManager::ScriptManager()
 {
@@ -8,6 +8,14 @@ ScriptManager::ScriptManager()
 bool ScriptManager::Init()
 {
 	return true;
+}
+
+void ScriptManager::Update(float _dt)
+{
+}
+
+void ScriptManager::Shutdown()
+{
 }
 
 ScriptManager::~ScriptManager()

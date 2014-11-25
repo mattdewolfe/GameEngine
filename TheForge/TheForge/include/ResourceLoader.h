@@ -8,6 +8,8 @@ public:
 	~ResourceLoader();
 
 	bool Init();
+	void Update(float _dt);
+	void Shutdown();
 };
 
 #endif

@@ -1,18 +1,19 @@
 #ifndef GAMEENGINE_H
 #define GAMEENGINE_H
-
+// Macro for deleting pointers - ensure memory cleanup
+#define SAFE_DELETE(p) { if (p) { delete(p); p = NULL; } }
 #include <Windows.h>
 #include <WindowsX.h>
 
-#include "AudioManager.h"
+#include "Audio\AudioManager.h"
 #include "ECS\ECSManager.h"
-#include "GraphicsManager.h"
-#include "InputManager.h"
+#include "Graphics\GraphicsManager.h"
+#include "Input\InputManager.h"
 #include "ResourceLoader.h"
-#include "EventManager.h"
+#include "Events\EventManager.h"
 #include "DebugManager.h"
-#include "ScriptManager.h"
-#include "Camera.h"
+#include "Script\ScriptManager.h"
+#include "Graphics\Camera.h"
 #include "Timer.h"
 
 class GameEngine
@@ -27,7 +28,9 @@ public:
 	// Initialize window with width height values
 	bool InitializeWindows(int, int);
 	// Update game world (based on frame time)
-	void Update(float deltaTime);
+	bool Update();
+	// handles the main loop of the engine.
+	void Run();
 	// Renders the next frame
 	void RenderFrame();
 	// Hault update calls by engine
@@ -37,7 +40,7 @@ public:
 	// Shutdown calls specific to window(s)
 	void ShutDownWindows();
 	// System for passing calls to other classes
-	void MessageHandler();
+	LRESULT CALLBACK  MessageHandler(HWND _hwnd, UINT _umsg, WPARAM _wparam, LPARAM _lparam);
 	// Used to determine time between frames
 	void CalculateFPS();
 
@@ -63,5 +66,9 @@ private:
 	float framesPerSecond;
 
 };
+
+// the WindowProc function prototype
+static LRESULT CALLBACK WindowProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
+static GameEngine* ApplicationHandle = NULL;
 
 #endif

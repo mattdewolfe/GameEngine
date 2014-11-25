@@ -25,15 +25,15 @@
     <ClInclude Include="include\Timer.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\AudioManager.cpp" />
-    <ClCompile Include="src\Camera.cpp" />
+    <ClCompile Include="src\Audio\AudioManager.cpp" />
     <ClCompile Include="src\DebugManager.cpp" />
-    <ClCompile Include="src\EventManager.cpp" />
+    <ClCompile Include="src\Events\EventManager.cpp" />
     <ClCompile Include="src\GameEngine.cpp" />
-    <ClCompile Include="src\GraphicsManager.cpp" />
-    <ClCompile Include="src\InputManager.cpp" />
+    <ClCompile Include="src\Graphics\Camera.cpp" />
+    <ClCompile Include="src\Graphics\GraphicsManager.cpp" />
+    <ClCompile Include="src\Input\InputManager.cpp" />
     <ClCompile Include="src\ResourceLoader.cpp" />
-    <ClCompile Include="src\ScriptManager.cpp" />
+    <ClCompile Include="src\Script\ScriptManager.cpp" />
     <ClCompile Include="src\source.cpp" />
     <ClCompile Include="src\Timer.cpp" />
   </ItemGroup>

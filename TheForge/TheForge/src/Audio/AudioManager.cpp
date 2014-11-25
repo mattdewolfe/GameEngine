@@ -1,4 +1,4 @@
-#include "AudioManager.h"
+#include "Audio\AudioManager.h"
 
 AudioManager::AudioManager()
 {
@@ -8,6 +8,15 @@ AudioManager::AudioManager()
 bool AudioManager::Init()
 {
 	return true;
+}
+
+void AudioManager::Update(float _dt)
+{
+
+}
+void AudioManager::Shutdown()
+{
+
 }
 
 AudioManager::~AudioManager()

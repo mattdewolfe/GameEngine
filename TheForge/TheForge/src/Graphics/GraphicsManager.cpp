@@ -1,4 +1,4 @@
-#include "GraphicsManager.h"
+#include "Graphics\GraphicsManager.h"
 
 GraphicsManager::GraphicsManager()
 {
@@ -79,7 +79,6 @@ void GraphicsManager::D3D_Render ()
 	// default background colour
     devcon->ClearRenderTargetView(backbuffer, D3DXCOLOR(0.5f, 0.7f, 0.9f, 1.0f));
 
-    // switch the back buffer and the front buffer
     swapchain->Present(0, 0);
 }
 
