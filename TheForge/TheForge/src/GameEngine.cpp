@@ -72,13 +72,13 @@ bool GameEngine::Init()
 		return false;
 	}
 
-	eventManager = new EventManager;
+	/*eventManager = new EventManager;
 	if (!eventManager)
 	{
 		return false;
 	}
 
-	initResult = eventManager->Init();
+	initResult = eventManager->Init();*/
 	if (initResult==false)
 	{
 		return false;
@@ -205,7 +205,7 @@ bool GameEngine::Update()
 	tick = timer.GetDeltaTime();
 
 	inputManager->Update(tick);
-	eventManager->Update(tick);
+//	eventManager->Update(tick);
 	audioManager->Update(tick);
 	scriptManager->Update(tick);
 	RenderFrame();
@@ -228,7 +228,7 @@ void GameEngine::Shutdown()
 	// Call shutdown on all game systems
 	// in reverse order of intialization
 	scriptManager->Shutdown();
-	eventManager->Shutdown();
+//	eventManager->Shutdown();
 	audioManager->Shutdown();
 	graphicsManager->Shutdown();
 	inputManager->Shutdown();
@@ -236,7 +236,7 @@ void GameEngine::Shutdown()
 	
 	// Free memory and delete pointers
 	SAFE_DELETE(scriptManager);
-	SAFE_DELETE(eventManager);
+//	SAFE_DELETE(eventManager);
 	SAFE_DELETE(audioManager);
 	SAFE_DELETE(graphicsManager);
 	SAFE_DELETE(camera);

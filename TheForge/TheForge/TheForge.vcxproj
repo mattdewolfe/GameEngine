@@ -11,23 +11,31 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="include\AudioManager.h" />
+    <ClInclude Include="EventData.h" />
+    <ClInclude Include="include\Audio\AudioManager.h" />
     <ClInclude Include="include\DebugManager.h" />
+    <ClInclude Include="include\ECS\BoxColliderComponent.h" />
     <ClInclude Include="include\ECS\ECSManager.h" />
-    <ClInclude Include="include\ECS\IGameComponent.h" />
     <ClInclude Include="include\ECS\GameEntity.h" />
-    <ClInclude Include="include\EventManager.h" />
+    <ClInclude Include="include\ECS\IGameComponent.h" />
+    <ClInclude Include="include\ECS\MeshComponent.h" />
+    <ClInclude Include="include\ECS\MovementControllerComponent.h" />
+    <ClInclude Include="include\ECS\RigidBodyComponent.h" />
+    <ClInclude Include="include\Events\EventManager.h" />
+    <ClInclude Include="include\Events\FastDelegate.h" />
+    <ClInclude Include="include\Events\FastDelegateBind.h" />
     <ClInclude Include="include\GameEngine.h" />
-    <ClInclude Include="include\GraphicsManager.h" />
-    <ClInclude Include="include\InputManager.h" />
+    <ClInclude Include="include\Graphics\Camera.h" />
+    <ClInclude Include="include\Graphics\GraphicsManager.h" />
+    <ClInclude Include="include\Input\InputManager.h" />
     <ClInclude Include="include\ResourceLoader.h" />
-    <ClInclude Include="include\ScriptManager.h" />
+    <ClInclude Include="include\Script\ScriptManager.h" />
     <ClInclude Include="include\Timer.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="EventManager.cpp" />
     <ClCompile Include="src\Audio\AudioManager.cpp" />
     <ClCompile Include="src\DebugManager.cpp" />
-    <ClCompile Include="src\Events\EventManager.cpp" />
     <ClCompile Include="src\GameEngine.cpp" />
     <ClCompile Include="src\Graphics\Camera.cpp" />
     <ClCompile Include="src\Graphics\GraphicsManager.cpp" />

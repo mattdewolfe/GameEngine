@@ -48,20 +48,11 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="include\AudioManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="include\GameEngine.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\ResourceLoader.h">
       <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\ECS\ECSManager.h">
-      <Filter>Header Files\ECS</Filter>
-    </ClInclude>
-    <ClInclude Include="include\ECS\IGameComponent.h">
-      <Filter>Header Files\ECS</Filter>
     </ClInclude>
     <ClInclude Include="include\Timer.h">
       <Filter>Header Files</Filter>
@@ -69,23 +60,56 @@
     <ClInclude Include="include\DebugManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\ECS\GameEntity.h">
-      <Filter>Header Files\ECS</Filter>
-    </ClInclude>
-    <ClInclude Include="include\EventManager.h">
-      <Filter>Header Files\EventSystem</Filter>
-    </ClInclude>
-    <ClInclude Include="include\InputManager.h">
-      <Filter>Header Files\InputSystem</Filter>
-    </ClInclude>
     <ClInclude Include="include\AudioManager.h">
       <Filter>Header Files\AudioSystem</Filter>
     </ClInclude>
-    <ClInclude Include="include\GraphicsManager.h">
+    <ClInclude Include="include\Events\EventManager.h">
+      <Filter>Header Files\EventSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ECS\BoxColliderComponent.h">
+      <Filter>Header Files\ECS</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ECS\ECSManager.h">
+      <Filter>Header Files\ECS</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ECS\GameEntity.h">
+      <Filter>Header Files\ECS</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ECS\IGameComponent.h">
+      <Filter>Header Files\ECS</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ECS\MeshComponent.h">
+      <Filter>Header Files\ECS</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ECS\MovementControllerComponent.h">
+      <Filter>Header Files\ECS</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ECS\RigidBodyComponent.h">
+      <Filter>Header Files\ECS</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Audio\AudioManager.h">
+      <Filter>Header Files\AudioSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Graphics\Camera.h">
       <Filter>Header Files\GraphicsSystem</Filter>
     </ClInclude>
-    <ClInclude Include="include\ScriptManager.h">
+    <ClInclude Include="include\Graphics\GraphicsManager.h">
+      <Filter>Header Files\GraphicsSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Input\InputManager.h">
+      <Filter>Header Files\InputSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Script\ScriptManager.h">
       <Filter>Header Files\ScriptSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="EventData.h">
+      <Filter>Header Files\EventSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Events\FastDelegate.h">
+      <Filter>Header Files\EventSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Events\FastDelegateBind.h">
+      <Filter>Header Files\EventSystem</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -104,9 +128,6 @@
     <ClCompile Include="src\Audio\AudioManager.cpp">
       <Filter>Source Files\AudioSystem</Filter>
     </ClCompile>
-    <ClCompile Include="src\Events\EventManager.cpp">
-      <Filter>Source Files\EventSystem</Filter>
-    </ClCompile>
     <ClCompile Include="src\Graphics\Camera.cpp">
       <Filter>Source Files\GraphicsSystem</Filter>
     </ClCompile>
@@ -121,6 +142,9 @@
     </ClCompile>
     <ClCompile Include="src\ResourceLoader.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="EventManager.cpp">
+      <Filter>Source Files\EventSystem</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
