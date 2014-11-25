@@ -11,7 +11,6 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="EventData.h" />
     <ClInclude Include="include\Audio\AudioManager.h" />
     <ClInclude Include="include\DebugManager.h" />
     <ClInclude Include="include\ECS\BoxColliderComponent.h" />
@@ -21,6 +20,7 @@
     <ClInclude Include="include\ECS\MeshComponent.h" />
     <ClInclude Include="include\ECS\MovementControllerComponent.h" />
     <ClInclude Include="include\ECS\RigidBodyComponent.h" />
+    <ClInclude Include="include\Events\EventData.h" />
     <ClInclude Include="include\Events\EventManager.h" />
     <ClInclude Include="include\Events\FastDelegate.h" />
     <ClInclude Include="include\Events\FastDelegateBind.h" />

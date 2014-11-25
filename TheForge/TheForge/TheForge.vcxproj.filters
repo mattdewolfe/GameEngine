@@ -60,9 +60,6 @@
     <ClInclude Include="include\DebugManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\AudioManager.h">
-      <Filter>Header Files\AudioSystem</Filter>
-    </ClInclude>
     <ClInclude Include="include\Events\EventManager.h">
       <Filter>Header Files\EventSystem</Filter>
     </ClInclude>
@@ -102,13 +99,13 @@
     <ClInclude Include="include\Script\ScriptManager.h">
       <Filter>Header Files\ScriptSystem</Filter>
     </ClInclude>
-    <ClInclude Include="EventData.h">
-      <Filter>Header Files\EventSystem</Filter>
-    </ClInclude>
     <ClInclude Include="include\Events\FastDelegate.h">
       <Filter>Header Files\EventSystem</Filter>
     </ClInclude>
     <ClInclude Include="include\Events\FastDelegateBind.h">
+      <Filter>Header Files\EventSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Events\EventData.h">
       <Filter>Header Files\EventSystem</Filter>
     </ClInclude>
   </ItemGroup>

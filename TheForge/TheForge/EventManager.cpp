@@ -1,6 +1,6 @@
 #include "Events\EventManager.h"
 
-EventManager::EventManager(char const* const _ptrName, bool _setAsGlobal) :
+EventManager::EventManager(const char* _ptrName, bool _setAsGlobal) :
 	IEventManager(_ptrName, _setAsGlobal)
 {
 	activeQueue = 0;
@@ -68,12 +68,14 @@ bool EventManager::VTriggerEvent(const IEventDataPtr& _ptrEvent)
 	}
 	return processed;
 }
-	
+
 bool EventManager::VQueueEvent(const IEventDataPtr& _ptrEvent)
 {
+	// Search listeners for an existing event type
 	auto findIt = eventListeners.find(_ptrEvent->VGetEventType());
 	if (findIt != eventListeners.end())
 	{
+		// If we do not find it, add this event to the active queue
 		queues[activeQueue].push_back(_ptrEvent);
 		return true;
 	}
@@ -83,12 +85,73 @@ bool EventManager::VQueueEvent(const IEventDataPtr& _ptrEvent)
 	}
 }
 
-bool EventManager::VTerminateAll(const EventType& _type)
+bool EventManager::VTerminateAll(const EventType& _targetType)
 {
+	bool success = false;
+	EventListenerMap::iterator findIt = eventListeners.find(_targetType);
 
+	if (findIt != eventListeners.end())
+	{
+		EventQueue& eventQueue = queues[activeQueue];
+		auto it = eventQueue.begin();
+		while (it != eventQueue.end())
+		{
+			// Do not remove item using iterator itself
+			auto thisIt = it;
+			// If event here is target type, erase it from queue
+			if ((*thisIt)->VGetEventType() == _targetType)
+			{
+				eventQueue.erase(thisIt);
+				success = true;
+			}
+			// Increment and continue
+			++it;
+		}
+	}
+	return success;
 }
 
-void EventManager::VUpdate(unsigned long _maxMilliseconds = 9999)
+void EventManager::VUpdate(unsigned long _maxMs)
 {
+	// unsigned long currMs = getTicks()
+	// unsigned long maxMs = currMs + _maxMs
 
+	// Swap active queues, clear new queue
+	int queueToProcess = activeQueue;
+	activeQueue = (activeQueue+1)%EM_NUMBER_OF_QUEUES;
+	queues[activeQueue].clear();
+
+	// Process the exisiting queue
+	while (queues[queueToProcess].empty()==false)
+	{
+		// Grab next event and pop front of queue
+		IEventDataPtr ptrEvent = queues[queueToProcess].front();
+		queues[queueToProcess].pop_front();
+
+		const EventType& eventType = ptrEvent->VGetEventType();
+
+		// Find all delegates registered to this event
+		auto findIt = eventListeners.find(eventType);
+		if(findIt != eventListeners.end())
+		{
+			const EventListenerList& updateEventListeners = findIt->second;
+			for (auto it = updateEventListeners.begin(); it != updateEventListeners.end();
+				it++)
+			{
+				// Call each listeners delegate
+				EventListenerDelegate listener = (*it);
+				listener(ptrEvent);
+			}
+		}
+
+		// Check to see if processing time is run out
+		/* Not using this functionality at the moment
+		currMs = getTicks();
+		if (currMs > maxMs)
+		{
+			break;
+		}
+		*/
+		
+	}
 }
