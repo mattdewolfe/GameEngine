@@ -16,21 +16,39 @@
     <Filter Include="Header Files\ECS">
       <UniqueIdentifier>{294cd489-2151-4561-a0eb-244e0cfa79e1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\EventSystem">
+      <UniqueIdentifier>{ad4d8aa9-491d-47c8-9352-04cfc08ecccc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\EventSystem">
+      <UniqueIdentifier>{daa0bd9a-1b2b-4502-8dfc-4a279dd35a0a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\AudioSystem">
+      <UniqueIdentifier>{f4208675-4f48-4ef1-b23c-2198ff860e1f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\GraphicsSystem">
+      <UniqueIdentifier>{902a724d-162f-4fcb-b59d-5c983e5e2a60}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\InputSystem">
+      <UniqueIdentifier>{ecf123b2-0322-4847-bf31-7236cf68ca19}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\ScriptSystem">
+      <UniqueIdentifier>{14e02a43-d451-4e5f-9765-d33f292671b6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\AudioSystem">
+      <UniqueIdentifier>{b6467aea-67cd-45be-93e9-a23dafcb5c1b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GraphicsSystem">
+      <UniqueIdentifier>{2f6a83a5-f31b-40e9-9bc7-3df8537aaaba}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\InputSystem">
+      <UniqueIdentifier>{325e226b-c05e-4da5-b3a7-dfe4def26947}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ScriptSystem">
+      <UniqueIdentifier>{aaa8172e-4086-47cc-93f8-13c58039f136}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="include\AudioManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\EventHandler.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="include\GameEngine.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\GraphicsManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\InputManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\ResourceLoader.h">
@@ -42,9 +60,6 @@
     <ClInclude Include="include\ECS\IGameComponent.h">
       <Filter>Header Files\ECS</Filter>
     </ClInclude>
-    <ClInclude Include="include\ScriptManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="include\Timer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -54,6 +69,21 @@
     <ClInclude Include="include\ECS\GameEntity.h">
       <Filter>Header Files\ECS</Filter>
     </ClInclude>
+    <ClInclude Include="include\EventManager.h">
+      <Filter>Header Files\EventSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="include\InputManager.h">
+      <Filter>Header Files\InputSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="include\AudioManager.h">
+      <Filter>Header Files\AudioSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="include\GraphicsManager.h">
+      <Filter>Header Files\GraphicsSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ScriptManager.h">
+      <Filter>Header Files\ScriptSystem</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\GameEngine.cpp">
@@ -62,32 +92,32 @@
     <ClCompile Include="src\source.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\GraphicsManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\AudioManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Camera.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\DebugManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\EventManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\InputManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\ResourceLoader.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\ScriptManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\Timer.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\EventManager.cpp">
+      <Filter>Source Files\EventSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="src\AudioManager.cpp">
+      <Filter>Source Files\AudioSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Camera.cpp">
+      <Filter>Source Files\GraphicsSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GraphicsManager.cpp">
+      <Filter>Source Files\GraphicsSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="src\InputManager.cpp">
+      <Filter>Source Files\InputSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ScriptManager.cpp">
+      <Filter>Source Files\ScriptSystem</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
