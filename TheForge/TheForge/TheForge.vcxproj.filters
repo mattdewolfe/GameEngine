@@ -46,6 +46,12 @@
     <Filter Include="Source Files\ScriptSystem">
       <UniqueIdentifier>{aaa8172e-4086-47cc-93f8-13c58039f136}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\GUI">
+      <UniqueIdentifier>{fc0f5886-720b-4d59-a6e5-96a7014f4b46}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GUI">
+      <UniqueIdentifier>{e4d90ce3-477c-42df-ae64-01d3ba5963cc}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\GameEngine.h">
@@ -108,6 +114,15 @@
     <ClInclude Include="include\Events\EventData.h">
       <Filter>Header Files\EventSystem</Filter>
     </ClInclude>
+    <ClInclude Include="include\GUI\GUIElements.h">
+      <Filter>Header Files\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="include\GUI\GUIManager.h">
+      <Filter>Header Files\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="include\GUI\GUIStateManager.h">
+      <Filter>Header Files\GUI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\GameEngine.cpp">
@@ -142,6 +157,12 @@
     </ClCompile>
     <ClCompile Include="EventManager.cpp">
       <Filter>Source Files\EventSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GUI\GUIManager.cpp">
+      <Filter>Source Files\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GUI\GUIStateManager.cpp">
+      <Filter>Source Files\GUI</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
