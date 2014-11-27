@@ -1,9 +1,9 @@
 #ifndef EVENT_DATA_H
 #define EVENT_DATA_H
 
-#include <memory.h>
-#include "FastDelegate.h"
-#include "FastDelegateBind.h"
+#include <memory>
+#include "Events\FastDelegate.h"
+#include "Events\FastDelegateBind.h"
 
 class IEventData;
 // Typedef a shared pointer handle for ease
