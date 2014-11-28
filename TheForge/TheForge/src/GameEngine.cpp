@@ -198,7 +198,7 @@ bool GameEngine::Update()
 
 	timer.Update();
 	tick = timer.GetDeltaTime();
-
+	timer.Pause(eventManager);
 	inputManager->Update(tick);
 	eventManager->VUpdate();
 	audioManager->Update(tick);

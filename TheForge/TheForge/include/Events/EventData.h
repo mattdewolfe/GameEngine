@@ -12,6 +12,7 @@ typedef std::shared_ptr<IEventData> IEventDataPtr;
 
 // As based on Fast Delegate code //
 void Delegate(IEventDataPtr pEventData);
+
 typedef fastdelegate::FastDelegate1<IEventDataPtr> EventListenerDelegate;
 
 // Should store all types of events we plan to listen for

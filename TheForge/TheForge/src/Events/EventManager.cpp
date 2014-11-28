@@ -6,6 +6,25 @@ EventManager::EventManager(const char* _ptrName, bool _setAsGlobal) :
 	activeQueue = 0;
 }
 
+void EventManager::VQueueEventByType(EventType _targetType)
+{
+	EventListenerMap::iterator findIt = eventListeners.find(_targetType);
+
+	if (findIt != eventListeners.end())
+	{
+		EventListenerList tempList = findIt->second;
+		EventListenerList::iterator thisIt = tempList.begin();
+		while (thisIt != tempList.end())
+		{
+			// Current issue - setting items into the queue by type 
+			// triggering. How to?
+			//queues[activeQueue].push_back(thisIt);
+			thisIt++;
+		}
+		
+	}
+}
+
 bool EventManager::VAddListener(const EventListenerDelegate& _eventDelegate, 
 		const EventType& _type)
 {

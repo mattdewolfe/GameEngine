@@ -8,6 +8,7 @@ class Timer
 {
 private:
 	time_t current;
+
 public:
 	Timer();
 	~Timer();
@@ -15,11 +16,10 @@ public:
 	bool Init(EventManager* _events);
 	// Start/restart the timer
 	void Start();
-	// Pause the timer
-
 	void Update();
-
-	void Pause();
+	// Pause the timer
+	void Pause(EventManager* _events);
+	// Delegate function for when timer is paused, used temporarily to test 
 	void TimerPausedDelegate(IEventDataPtr _ptrEventData);
 	// Resets elapsed time to 0
 	void Reset();

@@ -37,6 +37,8 @@ public:
 	// Process queued messages, optionally limit amount of time system
 	// can spend processing messages
 	virtual void VUpdate(unsigned long _maxMs = 9999) = 0;
+	// Add a specified event to the queue in order to call its delegates
+	virtual void VQueueEventByType(EventType __targetType) = 0;
 };
 
 
@@ -78,6 +80,9 @@ public:
 
 	void VUpdate(unsigned long _maxMilliseconds = 9999);
 	
+	void VQueueEventByType(EventType __targetType);
+
+	static IEventManager* Get();
 };
 
 #endif

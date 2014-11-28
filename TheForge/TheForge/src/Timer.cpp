@@ -26,9 +26,11 @@ bool Timer::Init(EventManager* _events)
 	return true;
 }
 
-void Timer::Pause()
+// Temp solution of passing in event system until 
+// we decide on handling as global/static
+void Timer::Pause(EventManager* _events)
 {
-
+	_events->VQueueEventByType(EVENT_Timer_Paused);
 }
 
 void Timer::TimerPausedDelegate(IEventDataPtr _ptrEventData)
