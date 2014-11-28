@@ -23,6 +23,12 @@ bool Timer::Init(EventManager* _events)
 	_events->VAddListener(delegateFunction, 
 		EVENT_Timer_Paused);
 
+	std::shared_ptr<EventData_TimerPaused> ptrTimerPaused (
+	new EventData_TimerPaused() );
+
+	_events->VQueueEvent(ptrTimerPaused);
+	//_events->VTriggerEvent(ptrTimerPaused);
+
 	return true;
 }
 

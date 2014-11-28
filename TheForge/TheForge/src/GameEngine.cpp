@@ -21,6 +21,12 @@ bool GameEngine::Init()
 	screenWidth = 0;
 	screenHeight = 0;
 	InitializeWindows(0, 0);
+	
+	eventManager = new EventManager("eventSys", true);
+	if (!eventManager)
+	{
+		return false;
+	}
 
 	// Setup files to be loaded by resource loader
 	resourceLoader = new ResourceLoader();
@@ -68,12 +74,6 @@ bool GameEngine::Init()
 
 	initResult = audioManager->Init();
 	if(initResult==false)
-	{
-		return false;
-	}
-
-	eventManager = new EventManager("eventSys", true);
-	if (!eventManager)
 	{
 		return false;
 	}

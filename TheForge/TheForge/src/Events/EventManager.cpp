@@ -4,6 +4,7 @@ EventManager::EventManager(const char* _ptrName, bool _setAsGlobal) :
 	IEventManager(_ptrName, _setAsGlobal)
 {
 	activeQueue = 0;
+
 }
 
 void EventManager::VQueueEventByType(EventType _targetType)

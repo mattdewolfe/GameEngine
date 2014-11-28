@@ -6,14 +6,13 @@
 class EventData_TimerPaused : public BaseEventData
 {
 public:
-	static const EventType eventType;
 
-	explicit EventData_TimerPaused() { }
-
-	virtual const EventType& VGetEventType() const { return eventType; }
-	virtual IEventDataPtr VCopy() { return IEventDataPtr(this); }
-	virtual const char* GetName() const { return "EventData_TimerPaused"; }
-	virtual void VSerialize() const { std::printf(this->GetName()); }
+	EventData_TimerPaused() : BaseEventData(EVENT_Timer_Paused, 0.0f) { }
+		
+	float VGetTimeStamp() { return 0.0f; }
+	const EventType& VGetEventType() const { return eventType; }
+	const char* VGetName() { return "EventData_TimerPaused"; }
+	void VSerialize() { DBOUT(this->VGetName()); }
 };
 
 #endif

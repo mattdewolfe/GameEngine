@@ -2,9 +2,19 @@
 #define EVENT_DATA_H
 
 #include <memory>
-#include <iostream> 
+#include <Windows.h>
+#include <iostream>
+#include <sstream> 
 #include "Events\FastDelegate.h"
 #include "Events\FastDelegateBind.h"
+
+// Macro for tracing event data names into output window
+#define DBOUT( s )            \
+{                             \
+   std::wostringstream os_;    \
+   os_ << s;                   \
+   OutputDebugStringW( os_.str().c_str() );  \
+}
 
 class IEventData;
 // Typedef a shared pointer handle for ease
@@ -31,27 +41,29 @@ public:
 	virtual const EventType& VGetEventType() const = 0;
 	virtual float VGetTimeStamp() const = 0;
 	virtual void VSerialize() const = 0;
-	virtual IEventDataPtr VCopy() const = 0;
-	virtual const char* GetName() const = 0;
+	virtual const char* VGetName() const = 0;
 };
 
 class BaseEventData : public IEventData
 {
-	const float timeStamp;
-
 public:
+	const float timeStamp;
+	const EventType eventType;
 	// Use of explicit to prevent the compiler from converting
 	// other variable types to the one our constructor requires
-	explicit BaseEventData(const float _timeStamp = 0.0f) :
-	timeStamp(_timeStamp) {};
+	BaseEventData(EventType _type, const float _timeStamp = 0.0f) :
+	timeStamp(_timeStamp),
+	eventType(_type) {};
 	virtual ~BaseEventData() {}
 
+
 	// Get the type of event
-	virtual const EventType& VGetEventType() const = 0;
+	const EventType& VGetEventType() const { return eventType; }
 	// Get the timestamp from this events creation
-	float GetTimeStamp() const { return timeStamp; }
+	float VGetTimeStamp() const { return timeStamp; }
 	// Serializing (for network use, for now for debug lines)
-	virtual void VSerialize() const {}
+	void VSerialize() const { DBOUT("base"); }
+	const char* VGetName() const { return "base"; }
 };
 
 #endif
