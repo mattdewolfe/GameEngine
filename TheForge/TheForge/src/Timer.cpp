@@ -1,13 +1,13 @@
 #include "Timer.h"
 
-Timer::Timer()
+Timer::Timer() : isPaused(false)
 {
 
 }
 
 void Timer::Start()
 {
-
+	isPaused = false;
 }
 
 void Timer::Update()
@@ -23,12 +23,6 @@ bool Timer::Init(EventManager* _events)
 	_events->VAddListener(delegateFunction, 
 		EVENT_Timer_Paused);
 
-	std::shared_ptr<EventData_TimerPaused> ptrTimerPaused (
-	new EventData_TimerPaused() );
-
-	_events->VQueueEvent(ptrTimerPaused);
-	//_events->VTriggerEvent(ptrTimerPaused);
-
 	return true;
 }
 
@@ -36,7 +30,15 @@ bool Timer::Init(EventManager* _events)
 // we decide on handling as global/static
 void Timer::Pause(EventManager* _events)
 {
-	_events->VQueueEventByType(EVENT_Timer_Paused);
+	// If timer is not paused, pause it and fire event
+	if (isPaused == false)
+	{
+		isPaused = true;
+		
+		std::shared_ptr<EventData_TimerPaused> ptrTimerPaused (
+		new EventData_TimerPaused() );
+		_events->VQueueEvent(ptrTimerPaused);
+	}
 }
 
 void Timer::TimerPausedDelegate(IEventDataPtr _ptrEventData)

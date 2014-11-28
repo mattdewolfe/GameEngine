@@ -198,7 +198,15 @@ bool GameEngine::Update()
 
 	timer.Update();
 	tick = timer.GetDeltaTime();
+	// RYAN - See below
+	// Passing in the event manager for the time being
+	// This is a dirty method that will be resolved upon global access decision
+	// Attempted using the books Static Get method, and it Static Sucks.
+	// This pause should fire the timer paused event once, and print the 
+	// event data type to the output window (of VS)
 	timer.Pause(eventManager);
+	
+	
 	inputManager->Update(tick);
 	eventManager->VUpdate();
 	audioManager->Update(tick);
