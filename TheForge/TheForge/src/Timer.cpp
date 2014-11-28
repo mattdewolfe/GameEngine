@@ -15,14 +15,28 @@ void Timer::Update()
 	current = time(NULL);
 }
 
-bool Timer::Init()
+bool Timer::Init(EventManager* _events)
 {
+	EventListenerDelegate delegateFunction = 
+		fastdelegate::MakeDelegate(this, &Timer::TimerPausedDelegate);
+		
+	_events->VAddListener(delegateFunction, 
+		EVENT_Timer_Paused);
+
 	return true;
 }
 
 void Timer::Pause()
 {
 
+}
+
+void Timer::TimerPausedDelegate(IEventDataPtr _ptrEventData)
+{
+	std::shared_ptr<EventData_TimerPaused> ptrCastEventData =
+		std::static_pointer_cast<EventData_TimerPaused>(_ptrEventData);
+
+	ptrCastEventData->VSerialize();
 }
 
 void Timer::Reset()

@@ -52,11 +52,10 @@ private:
 	AudioManager* audioManager;
 	ECSManager* ecsManager;
 	InputManager* inputManager;
-//	EventManager* eventManager;
 	ScriptManager* scriptManager;
+	EventManager* eventManager;
 	DebugManager* debugManager;
 	ResourceLoader* resourceLoader;
-
 	GraphicsManager* graphicsManager;
 	Camera* camera;
 

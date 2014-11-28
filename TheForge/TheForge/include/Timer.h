@@ -2,6 +2,7 @@
 #define TIMER_H
 
 #include <time.h>
+#include "Events\EventManager.h"
 
 class Timer
 {
@@ -11,7 +12,7 @@ public:
 	Timer();
 	~Timer();
 
-	bool Init();
+	bool Init(EventManager* _events);
 	// Start/restart the timer
 	void Start();
 	// Pause the timer
@@ -19,6 +20,7 @@ public:
 	void Update();
 
 	void Pause();
+	void TimerPausedDelegate(IEventDataPtr _ptrEventData);
 	// Resets elapsed time to 0
 	void Reset();
 	

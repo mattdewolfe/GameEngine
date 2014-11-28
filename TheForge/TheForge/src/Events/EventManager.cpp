@@ -24,7 +24,7 @@ bool EventManager::VAddListener(const EventListenerDelegate& _eventDelegate,
 	return true;
 }
 	
-bool EventManager::VARemoveListener(const EventListenerDelegate& _eventDelegate, 
+bool EventManager::VRemoveListener(const EventListenerDelegate& _eventDelegate, 
 		const EventType& _type)
 {
 	bool success = false;

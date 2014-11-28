@@ -5,6 +5,7 @@
 #include <map>
 #include <memory>
 #include "EventData.h"
+#include "Events.h"
 
 // Interface for all event managers
 class IEventManager
@@ -26,7 +27,7 @@ public:
 		const EventType& _type) = 0;
 	// Fire the specified event immidiately, bypassing event queue. All registered
 	// delegate functions will be called
-	virtual bool VTriggerEvent(const IEventDataPtr& _ptrEvent) const = 0;
+	virtual bool VTriggerEvent(const IEventDataPtr& _ptrEvent) = 0;
 	// Pushes the specified event onto the queue and will call it
 	// if there is enough time during the next tick
 	virtual bool VQueueEvent(const IEventDataPtr& _ptrEvent) = 0;
@@ -36,10 +37,9 @@ public:
 	// Process queued messages, optionally limit amount of time system
 	// can spend processing messages
 	virtual void VUpdate(unsigned long _maxMs = 9999) = 0;
-	// Get a reference to our global event manager, as we should only have
-	// one that is available across the entire engine
-	static IEventManager* Get();
 };
+
+
 
 // Define our global event manager
 
@@ -61,23 +61,23 @@ class EventManager : public IEventManager
 	int activeQueue;
 	
 public:
-	explicit EventManager(const char* _ptrName, bool _setAsGlobal);
-	virtual ~EventManager() { }
-
-	virtual bool VAddListener(const EventListenerDelegate& _eventDelegate, 
+	EventManager(const char* _ptrName, bool _setAsGlobal);
+	~EventManager() { }
+	
+	bool VAddListener(const EventListenerDelegate& _eventDelegate, 
 		const EventType& _type);
 	
-	virtual bool VARemoveListener(const EventListenerDelegate& _eventDelegate, 
+	bool VRemoveListener(const EventListenerDelegate& _eventDelegate, 
 		const EventType& _type);
 	
-	virtual bool VTriggerEvent(const IEventDataPtr& _ptrEvent);
+	bool VTriggerEvent(const IEventDataPtr& _ptrEvent);
 	
-	virtual bool VQueueEvent(const IEventDataPtr& _ptrEvent);
+	bool VQueueEvent(const IEventDataPtr& _ptrEvent);
 
-	virtual bool VTerminateAll(const EventType& _type);
+	bool VTerminateAll(const EventType& _type);
 
-	virtual void VUpdate(unsigned long _maxMilliseconds = 9999);
-
+	void VUpdate(unsigned long _maxMilliseconds = 9999);
+	
 };
 
 #endif
