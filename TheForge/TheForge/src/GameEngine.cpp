@@ -262,6 +262,23 @@ LRESULT CALLBACK GameEngine::MessageHandler(HWND _hwnd, UINT _umsg, WPARAM _wpar
 	case WM_KEYUP:
 		inputManager->KeyUp((unsigned int)_wparam);
 		break;
+	// TODO: look into capturing the mouse position for tracking movement outside of game window
+	case WM_MOUSEMOVE:
+		inputManager->MouseMove(GET_X_LPARAM(_lparam), GET_Y_LPARAM(_lparam));
+		break;
+	// TODO: accept input from all mouse buttons, not just left and right. Sort them in a proper data structure
+	case WM_LBUTTONDOWN:
+		inputManager->MouseButtonDown(0);
+		break;
+	case WM_LBUTTONUP:
+		inputManager->MouseButtonUp(0);
+		break;
+	case WM_RBUTTONDOWN:
+		inputManager->MouseButtonDown(1);
+		break;
+	case WM_RBUTTONUP:
+		inputManager->MouseButtonUp(1);
+		break;
 	//effectively, clicking the closer arrow.
 	case WM_DESTROY:
 		 PostQuitMessage(0);
