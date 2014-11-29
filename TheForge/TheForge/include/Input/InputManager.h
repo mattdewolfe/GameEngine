@@ -36,6 +36,9 @@ private:
 	MousePositionAxis mouseX, mouseY;
 	// using the KeyState struct for mouse is confusing (due to the name) maybe rename the struct?
 	std::vector<KeyState> mouseButtons;
+	// TODO: For some reason I can't create an object of HKL type, which means I can't convert from characters to Virtual Keys
+	// Find out why visual studio is so pissed off by the HKL type
+	//HKL inputLocaleIdentifier;
 
 	
 public:
@@ -55,10 +58,13 @@ public:
 
 	// returns true when down, false when up
 	bool GetKey(unsigned int _key);
+	//bool GetKey(char _c);
 	// returns true on the first frame the key is pressed down
 	bool GetKeyDown(unsigned int _key);
+	//bool GetKeyDown(char _c);
 	// returns true on the first frame the key is released
 	bool GetKeyUp(unsigned int _key);
+	//bool GetKeyUp(char _c);
 	// TODO: change from inividual mouse buttons methods into one unified. Requires mouse buttons to be stored in a data structure
 	int GetMouseX();	
 	int GetMouseY();

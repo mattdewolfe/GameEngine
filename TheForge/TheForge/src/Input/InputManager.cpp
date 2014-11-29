@@ -8,6 +8,7 @@
 #include <iostream>
 #include <sstream> 
 
+// FOR DEBUG PURPOSES ONLY
 // Macro for tracing event data names into output window
 #define DBOUT( s )            \
 {                             \
@@ -24,6 +25,8 @@ InputManager::InputManager()
 
 bool InputManager::Init()
 {
+	//inputLocaleIdentifier = LoadKeyboardLayout((LPCWSTR)"00000409", KLF_ACTIVATE);
+
 	keyStates = new KeyState[256];
 	// TODO: typing this out made me sad. Find a better way of storing mouse button information
 	// ideally be somewhat dynamic, since different mice have different amounts of buttons
@@ -66,6 +69,7 @@ void InputManager::KeyDown(unsigned int _key)
 {
 	keyStates[_key].debugKeyState = true;
 	recentlyToggled.push_back(_key);
+	//DBOUT (_key);
 }
 
 void InputManager::KeyUp(unsigned int _key)
@@ -95,15 +99,35 @@ bool InputManager::GetKey(unsigned int _key)
 	return keyStates[_key].currentKeyState;
 }
 
+// Removed char support due to inability to create an HKL object (see InputManager.h)
+
+//bool InputManager::GetKey(char _c)
+//{
+//	unsigned int _key = VkKeyScanEx(_c, inputLocaleIdentifier);
+//	return keyStates[_key].currentKeyState;
+//}
+
 bool InputManager::GetKeyDown(unsigned int _key)
 {
 	return (keyStates[_key].currentKeyState && !keyStates[_key].previousKeyState);
 }
 
+//bool InputManager::GetKeyDown(char _c)
+//{
+//	unsigned int _key = VkKeyScanEx(_c, inputLocaleIdentifier);
+//	return (keyStates[_key].currentKeyState && !keyStates[_key].previousKeyState);
+//}
+
 bool InputManager::GetKeyUp(unsigned int _key)
 {
 	return (!keyStates[_key].currentKeyState && keyStates[_key].previousKeyState);
 }
+
+//bool InputManager::GetKeyUp(char _c)
+//{
+//	unsigned int _key = VkKeyScanEx(_c, inputLocaleIdentifier);
+//	return (!keyStates[_key].currentKeyState && keyStates[_key].previousKeyState);
+//}
 
 int InputManager::GetMouseX ()
 {
