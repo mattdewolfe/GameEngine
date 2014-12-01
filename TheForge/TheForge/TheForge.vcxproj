@@ -28,6 +28,9 @@
     <ClInclude Include="include\GameEngine.h" />
     <ClInclude Include="include\Graphics\Camera.h" />
     <ClInclude Include="include\Graphics\GraphicsManager.h" />
+    <ClInclude Include="include\GUI\GUIElements.h" />
+    <ClInclude Include="include\GUI\GUIManager.h" />
+    <ClInclude Include="include\GUI\GUIStateManager.h" />
     <ClInclude Include="include\Input\InputManager.h" />
     <ClInclude Include="include\ResourceLoader.h" />
     <ClInclude Include="include\Script\ScriptManager.h" />
@@ -40,6 +43,8 @@
     <ClCompile Include="src\GameEngine.cpp" />
     <ClCompile Include="src\Graphics\Camera.cpp" />
     <ClCompile Include="src\Graphics\GraphicsManager.cpp" />
+    <ClCompile Include="src\GUI\GUIManager.cpp" />
+    <ClCompile Include="src\GUI\GUIStateManager.cpp" />
     <ClCompile Include="src\Input\InputManager.cpp" />
     <ClCompile Include="src\ResourceLoader.cpp" />
     <ClCompile Include="src\Script\ScriptManager.cpp" />

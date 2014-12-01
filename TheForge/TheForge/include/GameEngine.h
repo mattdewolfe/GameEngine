@@ -44,6 +44,16 @@ public:
 	// Used to determine time between frames
 	void CalculateFPS();
 
+	//get/sets.
+	AudioManager* GetAudioManager()
+	{ return audioManager; } 
+	GraphicsManager* GetGraphicsManager()
+	{ return graphicsManager; } 
+	EventManager* GetEventManager()
+	{ return eventManager; }
+	InputManager* GetInputManager()
+	{ return inputManager; }
+
 private:
 	LPCWSTR applicationName;
 	HINSTANCE hInstance;

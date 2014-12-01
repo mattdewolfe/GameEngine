@@ -7,23 +7,13 @@
 
 //const int MaxElementsPerTexture = 512; ??
 
-struct Quad
-{
-	float xPos;
-	float yPos;
-	int width;
-	int height;
-};
-
 struct Vector2
 {
-	Vector2()
-	{ }
-	Vector2(float _x, float _y) 
+	Vector2(float _x = 0, float _y = 0) 
 	{
 		x = _x;
 		y = _y;
-	}
+	};
 	float x, y;
 };
 
@@ -35,9 +25,18 @@ struct Vector4
 		g = _g;
 		b = _b;
 		a = _a;
-	}
+	};
 	float r, g, b, a;
 };
+
+struct Quad
+{
+	float xPos;
+	float yPos;
+	int width;
+	int height;
+};
+
 
 struct GUIElementVertexData
 {
@@ -72,8 +71,7 @@ public:
 
 		currentState = GUI_ACTIVE;
 	}
-	~GUIElement()
-	{ }
+	~GUIElement(){}
 
 	std::string GetTexture()
 	{ return texture; }
@@ -98,8 +96,7 @@ public:
 		text = "xxxTESTxxx";
 		font = "yyyTESTyyy";
 	}
-	~GUIText()
-	{ }
+	~GUIText(){}
 
 	 std::string GetFont() const
 	{ return font; } 

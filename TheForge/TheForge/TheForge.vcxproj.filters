@@ -117,6 +117,15 @@
     <ClInclude Include="include\Events\Events.h">
       <Filter>Header Files\EventSystem</Filter>
     </ClInclude>
+    <ClInclude Include="include\GUI\GUIElements.h">
+      <Filter>Header Files\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="include\GUI\GUIManager.h">
+      <Filter>Header Files\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="include\GUI\GUIStateManager.h">
+      <Filter>Header Files\GUI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\GameEngine.cpp">
@@ -151,6 +160,12 @@
     </ClCompile>
     <ClCompile Include="src\Events\EventManager.cpp">
       <Filter>Source Files\EventSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GUI\GUIManager.cpp">
+      <Filter>Source Files\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GUI\GUIStateManager.cpp">
+      <Filter>Source Files\GUI</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
