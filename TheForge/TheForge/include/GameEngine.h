@@ -63,7 +63,6 @@ private:
 	bool isPaused;
 
 	float framesPerSecond;
-
 };
 
 // the WindowProc function prototype
