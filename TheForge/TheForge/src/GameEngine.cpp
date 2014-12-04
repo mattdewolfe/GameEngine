@@ -210,6 +210,9 @@ bool GameEngine::Update()
 	inputManager->Update(tick);
 	eventManager->VUpdate();
 	audioManager->Update(tick);
+
+	audioManager->PlaySFX("pullup.mp3");
+
 	scriptManager->Update(tick);
 	RenderFrame();
 	

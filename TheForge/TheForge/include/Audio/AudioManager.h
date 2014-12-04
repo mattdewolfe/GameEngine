@@ -45,7 +45,7 @@ public:
 	void CreateSound(std::string _name);
 	void CreateAudioStream(std::string _name);
 
-	void PlaySound(std::string _key);
+	void PlaySFX(std::string _key);
 	void PauseSound(std::string _key);
 	void PauseAllSounds();
 	void ResumeSound(std::string _key);

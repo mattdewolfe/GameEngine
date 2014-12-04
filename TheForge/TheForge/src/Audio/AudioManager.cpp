@@ -7,7 +7,8 @@
 #pragma region cons/des
 AudioManager::AudioManager()
 {
-
+	soundVolume = 1.0f;
+	musicVolume = 1.0f;
 }
 
 AudioManager::~AudioManager()
@@ -71,16 +72,17 @@ void AudioManager::Shutdown()
 //requires full name "gamma.ogg" for instance.
 void AudioManager::CreateSound(std::string _name)
 {
+	if(soundMap.find(_name) != soundMap.end())
+	{
+		return;
+	}
+
 	// "Assets/Audio Assets/my noise.wewe "
 	std::string path = "Assets/Audio Assets/" + _name;
 
 	FMOD::Sound* temp;
 	fm_system->createSound(path.c_str(), FMOD_DEFAULT, 0 , &temp);
 	soundMap[_name] = temp;
-
-	FMOD::Channel* tempChannel;
-	tempChannel->setVolume(soundVolume);
-	channelMap[_name] = tempChannel;
 }
 
 void AudioManager::CreateAudioStream(std::string _name)
@@ -91,8 +93,13 @@ void AudioManager::CreateAudioStream(std::string _name)
 #pragma region
 
 #pragma region adjust playback
-void AudioManager::PlaySound(std::string _key)
+void AudioManager::PlaySFX(std::string _key)
 {
+	if(soundMap.find(_key) == soundMap.end())
+	{
+		CreateSound(_key);
+	}
+
 	channelMap[_key]->setVolume(soundVolume);
 	fm_system->playSound(soundMap[_key], NULL, false, &channelMap[_key]);
 }
