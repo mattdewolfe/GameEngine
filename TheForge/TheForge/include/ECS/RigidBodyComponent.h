@@ -5,6 +5,6 @@
 
 class RigidBodyComponent : public IGameComponent
 {
-
+	
 };
 #endif

@@ -6,6 +6,7 @@
 #include <iostream>
 #include <sstream> 
 #include <string>
+#include "../ECS/StatsComponent.h"
 #include "rapidxml.hpp"
 #include "rapidxml_iterators.hpp"
 #include "rapidxml_print.hpp"
@@ -30,6 +31,10 @@ public:
 	void Shutdown();
 	bool LoadScript(const char* _fileName);
 	
+	// Load variables into a stat class from xml script
+	void LoadStatsFromScript(StatsComponent* _component, char* _statClass);
+
+private:
 	// Set a variable by passing in the variable name in script and the variable itself
 	// The variable must be passed in to determine type to return
 	// @Parem - node to look under, attribute name, variable type to return
@@ -37,13 +42,15 @@ public:
 	int GetVariableFromScript(char* _node, char* _name, int *var);
 	bool GetVariableFromScript(char* _node, char* _name, bool *var);
 	std::string GetVariableFromScript(char* _node, char* _name, std::string *var);
-	/*
+	/* For further functionilty, we could look into changing the variables stored in our scripts
+	* from inside our engine, add additional component parameters to be created via script, 
+	* or add in the ability to run functions based entirely on scripting 
 	void CreateComponentFromScript(char* _name, ICompoment* comp);
 	float SetVariableInScript(char* _name, float &var);
 	int SetVariableInScript(char* _name, int &var);
 	bool SetVariableInScript(char* _name, bool &var);
 	*/
-private:
+
 	rapidxml::xml_document<> doc;
 	rapidxml::file<>* xmlFile;
 };

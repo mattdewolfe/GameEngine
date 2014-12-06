@@ -8,8 +8,9 @@ ScriptManager::ScriptManager()
 float ScriptManager::GetVariableFromScript(char* _node, char* _name, float* var)
 {
 	rapidxml::xml_node<>* parent = doc.first_node();
-	rapidxml::xml_node<>* targetNode = parent->first_node(_name);
-	char* ret = targetNode->value();
+	rapidxml::xml_node<>* targetNode = parent->first_node(_node);
+	rapidxml::xml_node<>* targetAttr = targetNode->first_node(_name);
+	char* ret = targetAttr->value();
 	float total = 0.0f;
 	bool afterDecimal = false;
 	for (int i = 0; ret[i] != '\0'; i++)
@@ -39,24 +40,27 @@ float ScriptManager::GetVariableFromScript(char* _node, char* _name, float* var)
 int ScriptManager::GetVariableFromScript(char* _node, char* _name, int* var)
 {
 	rapidxml::xml_node<>* parent = doc.first_node();
-	rapidxml::xml_node<>* targetNode = parent->first_node(_name);
-	int ret = (int)targetNode->value();
-	DBOUT("SCRIPT: Read int: " << targetNode->value());
+	rapidxml::xml_node<>* targetNode = parent->first_node(_node);
+	rapidxml::xml_node<>* targetAttr = targetNode->first_node(_name);
+	int ret = std::stoi(targetAttr->value());
+	DBOUT("SCRIPT: Read int: " << ret);
 	return ret;
 }
 
 bool ScriptManager::GetVariableFromScript(char* _node, char* _name, bool* var)
 {
 	rapidxml::xml_node<>* parent = doc.first_node();
-	rapidxml::xml_node<>* targetNode = parent->first_node(_name);
-	DBOUT("SCRIPT: Read bool: " << targetNode->value());
-	if (targetNode->value() == "true")
+	rapidxml::xml_node<>* targetNode = parent->first_node(_node);
+	rapidxml::xml_node<>* targetAttr = targetNode->first_node(_name);
+	char* attr = targetAttr->value();
+	if (attr[0] == 't' || attr[0] == 'T')
 	{ 
-		
+		DBOUT("SCRIPT: Read bool: true");
 		return true;
 	}
 	else
 	{
+		DBOUT("SCRIPT: Read bool: false");
 		return false;
 	}
 }
@@ -64,15 +68,35 @@ bool ScriptManager::GetVariableFromScript(char* _node, char* _name, bool* var)
 std::string ScriptManager::GetVariableFromScript(char* _node, char* _name, std::string* var)
 {
 	rapidxml::xml_node<>* parent = doc.first_node();
-	rapidxml::xml_node<>* targetNode = parent->first_node(_name);
-	std::string ret = targetNode->value();
-	DBOUT("SCRIPT: Read string: " << targetNode->value());
+	rapidxml::xml_node<>* targetNode = parent->first_node(_node);
+	rapidxml::xml_node<>* targetAttr = targetNode->first_node(_name);
+	std::string ret = targetAttr->value();
+	DBOUT("SCRIPT: Read string: " << targetAttr->value());
 	return ret;
+}
+
+void ScriptManager::LoadStatsFromScript(StatsComponent* _component, char* _statClass)
+{
+	// Load the stats component script
+	LoadScript("scripts\\StatsComponents.xml");
+	
+	// Load in values for our stats class from script
+	int health = GetVariableFromScript(_statClass, "Health", &health);
+	_component->SetHealth(health);
+
+	float speed = GetVariableFromScript(_statClass, "Speed", &speed);
+	_component->SetSpeed(speed);
+	
+	std::string name = GetVariableFromScript(_statClass, "Name", &name);
+	_component->SetName(name);
+
+	bool isAlive = GetVariableFromScript(_statClass, "Alive", &isAlive);
+	_component->SetIsAlive(isAlive);
 }
 
 bool ScriptManager::Init()
 {
-	LoadScript("scripts\\xmlTest.xml");
+	LoadScript("scripts\\TestXML.xml");
 	return true;
 }
 
