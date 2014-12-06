@@ -20,6 +20,7 @@
     <ClInclude Include="include\ECS\MeshComponent.h" />
     <ClInclude Include="include\ECS\MovementControllerComponent.h" />
     <ClInclude Include="include\ECS\RigidBodyComponent.h" />
+    <ClInclude Include="include\ECS\StatsComponent.h" />
     <ClInclude Include="include\Events\EventData.h" />
     <ClInclude Include="include\Events\EventManager.h" />
     <ClInclude Include="include\Events\Events.h" />

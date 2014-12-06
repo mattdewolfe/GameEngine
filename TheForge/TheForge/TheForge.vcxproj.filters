@@ -126,6 +126,9 @@
     <ClInclude Include="include\GUI\GUIStateManager.h">
       <Filter>Header Files\GUI</Filter>
     </ClInclude>
+    <ClInclude Include="include\ECS\StatsComponent.h">
+      <Filter>Header Files\ECS</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\GameEngine.cpp">

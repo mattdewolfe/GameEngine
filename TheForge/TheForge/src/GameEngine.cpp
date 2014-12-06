@@ -1,4 +1,5 @@
 #include "GameEngine.h"
+#include "../include/ECS/StatsComponent.h"
 
 GameEngine::GameEngine()
 {
@@ -106,15 +107,18 @@ bool GameEngine::Init()
 
 void GameEngine::ScriptTest()
 {
-	int i = 0;
-	i = scriptManager->GetVariableFromScript("Player", "Health", &i);
-	bool alive = false;
-	alive = scriptManager->GetVariableFromScript("Player", "Alive", &alive);
-	float speed = 0.0f;
-	speed = scriptManager->GetVariableFromScript("Player", "Speed", &speed);
-	std::string name;
-	name = scriptManager->GetVariableFromScript("Player", "Name", &name);
+	/* Ryan,
+	* The following will create a stats compoment, which we would add to our game entities
+	* and load in the values for the StatsClass (the only parameter the component takes, from the
+	* StatsComponents xml file (located in root/scripts)
+	* -MD */
+	StatsComponent* testXML = new StatsComponent("Player");
+	scriptManager->LoadStatsFromScript(testXML, testXML->statClass);
+	// Uncomment and toss a break point here if you want to check values set in the script component
+	std::string name = testXML->GetName();
+	SAFE_DELETE(testXML);	
 }
+
 // Initialize window and windows elements
 bool GameEngine::InitializeWindows(int _width, int _height)
 {

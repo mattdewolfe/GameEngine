@@ -1,0 +1,14 @@
+<CharacterStats>
+  <Player>
+    <Health>10</Health>
+    <Speed>3.2</Speed>
+    <Name>Hero</Name>
+    <Alive>True</Alive>
+  </Player>
+  <AIDrone>
+    <Health>3</Health>
+    <Speed>2.2</Speed>
+    <Name>Drone</Name>
+    <Alive>True</Alive>
+  </AIDrone>
+</CharacterStats>
