@@ -106,8 +106,14 @@ bool GameEngine::Init()
 
 void GameEngine::ScriptTest()
 {
-	int* i = 0;
-	//scriptManager->GetVariableFromScript("Health", i);
+	int i = 0;
+	i = scriptManager->GetVariableFromScript("Player", "Health", &i);
+	bool alive = false;
+	alive = scriptManager->GetVariableFromScript("Player", "Alive", &alive);
+	float speed = 0.0f;
+	speed = scriptManager->GetVariableFromScript("Player", "Speed", &speed);
+	std::string name;
+	name = scriptManager->GetVariableFromScript("Player", "Name", &name);
 }
 // Initialize window and windows elements
 bool GameEngine::InitializeWindows(int _width, int _height)
