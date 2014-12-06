@@ -99,9 +99,16 @@ bool GameEngine::Init()
 
 	isPaused = false;
 
+	ScriptTest();
+
 	return initResult;
 }
 
+void GameEngine::ScriptTest()
+{
+	int* i = 0;
+	//scriptManager->GetVariableFromScript("Health", i);
+}
 // Initialize window and windows elements
 bool GameEngine::InitializeWindows(int _width, int _height)
 {
@@ -205,7 +212,6 @@ bool GameEngine::Update()
 	// This pause should fire the timer paused event once, and print the 
 	// event data type to the output window (of VS)
 	timer.Pause(eventManager);
-	
 	
 	inputManager->Update(tick);
 	eventManager->VUpdate();
