@@ -23,7 +23,6 @@ public:
 	void TimerPausedDelegate(IEventDataPtr _ptrEventData);
 	// Resets elapsed time to 0
 	void Reset();
-	
 	float GetDeltaTime();
 };
 

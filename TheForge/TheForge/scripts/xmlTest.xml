@@ -1,0 +1,6 @@
+<Player>
+    <Health>10</Health>
+    <Speed>3</Speed>
+    <Name>Jim</Name>
+    <Alive>True</Alive>
+</Player>

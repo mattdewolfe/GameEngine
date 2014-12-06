@@ -43,7 +43,8 @@ public:
 	LRESULT CALLBACK  MessageHandler(HWND _hwnd, UINT _umsg, WPARAM _wparam, LPARAM _lparam);
 	// Used to determine time between frames
 	void CalculateFPS();
-
+	// A simple test of scripting system
+	void ScriptTest();
 	//get/sets.
 	AudioManager* GetAudioManager()
 	{ return audioManager; } 
