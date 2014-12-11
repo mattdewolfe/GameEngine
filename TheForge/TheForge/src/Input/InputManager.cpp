@@ -101,33 +101,33 @@ bool InputManager::GetKey(unsigned int _key)
 
 // Removed char support due to inability to create an HKL object (see InputManager.h)
 
-//bool InputManager::GetKey(char _c)
-//{
-//	unsigned int _key = VkKeyScanEx(_c, inputLocaleIdentifier);
-//	return keyStates[_key].currentKeyState;
-//}
+bool InputManager::GetKey(char _c)
+{
+	unsigned int _key = VkKeyScanEx(_c, inputLocaleIdentifier);
+	return keyStates[_key].currentKeyState;
+}
 
 bool InputManager::GetKeyDown(unsigned int _key)
 {
 	return (keyStates[_key].currentKeyState && !keyStates[_key].previousKeyState);
 }
 
-//bool InputManager::GetKeyDown(char _c)
-//{
-//	unsigned int _key = VkKeyScanEx(_c, inputLocaleIdentifier);
-//	return (keyStates[_key].currentKeyState && !keyStates[_key].previousKeyState);
-//}
+bool InputManager::GetKeyDown(char _c)
+{
+	unsigned int _key = VkKeyScanEx(_c, inputLocaleIdentifier);
+	return (keyStates[_key].currentKeyState && !keyStates[_key].previousKeyState);
+}
 
 bool InputManager::GetKeyUp(unsigned int _key)
 {
 	return (!keyStates[_key].currentKeyState && keyStates[_key].previousKeyState);
 }
 
-//bool InputManager::GetKeyUp(char _c)
-//{
-//	unsigned int _key = VkKeyScanEx(_c, inputLocaleIdentifier);
-//	return (!keyStates[_key].currentKeyState && keyStates[_key].previousKeyState);
-//}
+bool InputManager::GetKeyUp(char _c)
+{
+	unsigned int _key = VkKeyScanEx(_c, inputLocaleIdentifier);
+	return (!keyStates[_key].currentKeyState && keyStates[_key].previousKeyState);
+}
 
 int InputManager::GetMouseX ()
 {

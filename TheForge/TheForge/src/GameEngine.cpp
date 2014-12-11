@@ -214,11 +214,11 @@ bool GameEngine::Update()
 	RenderFrame();
 	
 	// DEBUG demo for input system
-	if (inputManager->GetKeyDown(65))
+	if (inputManager->GetKeyDown('a'))
 	{
 		DBOUT("button 'a' pressed");
 	}
-	else if (inputManager->GetKeyUp(65))
+	else if (inputManager->GetKeyUp('a'))
 	{
 		DBOUT("button 'a' released");
 	}
