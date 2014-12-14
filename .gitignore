@@ -3,6 +3,7 @@
 
 # Added by Matt - who needs tlog? No one.
 *.tlog
+*.lastbuildstate
 
 # User-specific files
 *.suo
