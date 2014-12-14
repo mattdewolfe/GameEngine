@@ -4,6 +4,8 @@
 # Added by Matt - who needs tlog? No one.
 *.tlog
 *.lastbuildstate
+*.exe
+*.idb
 
 # User-specific files
 *.suo
