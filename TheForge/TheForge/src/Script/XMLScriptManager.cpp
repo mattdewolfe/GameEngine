@@ -1,11 +1,11 @@
-#include "Script\ScriptManager.h"
+#include "Script\XMLScriptManager.h"
 
-ScriptManager::ScriptManager()
+XMLScriptManager::XMLScriptManager()
 {
 
 }
 
-float ScriptManager::GetVariableFromScript(char* _node, char* _name, float* var)
+float XMLScriptManager::GetVariableFromScript(char* _node, char* _name, float* var)
 {
 	rapidxml::xml_node<>* parent = doc.first_node();
 	rapidxml::xml_node<>* targetNode = parent->first_node(_node);
@@ -37,7 +37,7 @@ float ScriptManager::GetVariableFromScript(char* _node, char* _name, float* var)
 	return total;
 }
 
-int ScriptManager::GetVariableFromScript(char* _node, char* _name, int* var)
+int XMLScriptManager::GetVariableFromScript(char* _node, char* _name, int* var)
 {
 	rapidxml::xml_node<>* parent = doc.first_node();
 	rapidxml::xml_node<>* targetNode = parent->first_node(_node);
@@ -47,7 +47,7 @@ int ScriptManager::GetVariableFromScript(char* _node, char* _name, int* var)
 	return ret;
 }
 
-bool ScriptManager::GetVariableFromScript(char* _node, char* _name, bool* var)
+bool XMLScriptManager::GetVariableFromScript(char* _node, char* _name, bool* var)
 {
 	rapidxml::xml_node<>* parent = doc.first_node();
 	rapidxml::xml_node<>* targetNode = parent->first_node(_node);
@@ -65,7 +65,7 @@ bool ScriptManager::GetVariableFromScript(char* _node, char* _name, bool* var)
 	}
 }
 
-std::string ScriptManager::GetVariableFromScript(char* _node, char* _name, std::string* var)
+std::string XMLScriptManager::GetVariableFromScript(char* _node, char* _name, std::string* var)
 {
 	rapidxml::xml_node<>* parent = doc.first_node();
 	rapidxml::xml_node<>* targetNode = parent->first_node(_node);
@@ -75,7 +75,7 @@ std::string ScriptManager::GetVariableFromScript(char* _node, char* _name, std::
 	return ret;
 }
 
-void ScriptManager::LoadStatsFromScript(StatsComponent* _component, char* _statClass)
+void XMLScriptManager::LoadStatsFromScript(StatsComponent* _component, char* _statClass)
 {
 	// Load the stats component script
 	LoadScript("scripts\\StatsComponents.xml");
@@ -94,13 +94,13 @@ void ScriptManager::LoadStatsFromScript(StatsComponent* _component, char* _statC
 	_component->SetIsAlive(isAlive);
 }
 
-bool ScriptManager::Init()
+bool XMLScriptManager::Init()
 {
 	LoadScript("scripts\\TestXML.xml");
 	return true;
 }
 
-bool ScriptManager::LoadScript(const char* _fileName)
+bool XMLScriptManager::LoadScript(const char* _fileName)
 {
 	xmlFile = new rapidxml::file<>(_fileName);
 	if (xmlFile != nullptr)
@@ -111,12 +111,12 @@ bool ScriptManager::LoadScript(const char* _fileName)
 	return false;
 }
 
-void ScriptManager::Update(float _dt)
+void XMLScriptManager::Update(float _dt)
 {
 
 }
 
-void ScriptManager::Shutdown()
+void XMLScriptManager::Shutdown()
 {
 	doc.clear();
 
@@ -131,7 +131,7 @@ void PrintString(std::string &str)
 }
 
 
-ScriptManager::~ScriptManager()
+XMLScriptManager::~XMLScriptManager()
 {
 
 }

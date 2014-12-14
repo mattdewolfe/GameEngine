@@ -102,9 +102,6 @@
     <ClInclude Include="include\Input\InputManager.h">
       <Filter>Header Files\InputSystem</Filter>
     </ClInclude>
-    <ClInclude Include="include\Script\ScriptManager.h">
-      <Filter>Header Files\ScriptSystem</Filter>
-    </ClInclude>
     <ClInclude Include="include\Events\FastDelegate.h">
       <Filter>Header Files\EventSystem</Filter>
     </ClInclude>
@@ -128,6 +125,15 @@
     </ClInclude>
     <ClInclude Include="include\ECS\StatsComponent.h">
       <Filter>Header Files\ECS</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Script\XMLScriptManager.h">
+      <Filter>Header Files\ScriptSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Script\ILuaScriptManager.h">
+      <Filter>Header Files\ScriptSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Script\LuaScriptManager.h">
+      <Filter>Header Files\ScriptSystem</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -155,9 +161,6 @@
     <ClCompile Include="src\Input\InputManager.cpp">
       <Filter>Source Files\InputSystem</Filter>
     </ClCompile>
-    <ClCompile Include="src\Script\ScriptManager.cpp">
-      <Filter>Source Files\ScriptSystem</Filter>
-    </ClCompile>
     <ClCompile Include="src\ResourceLoader.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -169,6 +172,9 @@
     </ClCompile>
     <ClCompile Include="src\GUI\GUIStateManager.cpp">
       <Filter>Source Files\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Script\XMLScriptManager.cpp">
+      <Filter>Source Files\ScriptSystem</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

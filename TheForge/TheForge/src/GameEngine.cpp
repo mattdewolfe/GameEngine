@@ -79,13 +79,13 @@ bool GameEngine::Init()
 		return false;
 	}
 
-	scriptManager = new ScriptManager;
-	if (!scriptManager)
+	XMLscriptManager = new XMLScriptManager();
+	if (!XMLscriptManager)
 	{
 		return false;
 	}
 
-	initResult = scriptManager->Init();
+	initResult = XMLscriptManager->Init();
 	if (initResult==false)
 	{
 		return false;
@@ -113,7 +113,7 @@ void GameEngine::ScriptTest()
 	* StatsComponents xml file (located in root/scripts)
 	* -MD */
 	StatsComponent* testXML = new StatsComponent("Player");
-	scriptManager->LoadStatsFromScript(testXML, testXML->statClass);
+	XMLscriptManager->LoadStatsFromScript(testXML, testXML->statClass);
 	// Uncomment and toss a break point here if you want to check values set in the script component
 	std::string name = testXML->GetName();
 	SAFE_DELETE(testXML);	
@@ -229,7 +229,7 @@ bool GameEngine::Update()
 
 	audioManager->PlaySFX("pullup.mp3");
 
-	scriptManager->Update(tick);
+	XMLscriptManager->Update(tick);
 	RenderFrame();
 	
 	// DEBUG demo for input system
@@ -259,14 +259,14 @@ void GameEngine::Shutdown()
 {
 	// Call shutdown on all game systems
 	// in reverse order of intialization
-	scriptManager->Shutdown();
+	XMLscriptManager->Shutdown();
 	audioManager->Shutdown();
 	graphicsManager->Shutdown();
 	inputManager->Shutdown();
 	resourceLoader->Shutdown();
 	
 	// Free memory and delete pointers
-	SAFE_DELETE(scriptManager);
+	SAFE_DELETE(XMLscriptManager);
 	SAFE_DELETE(eventManager);
 	SAFE_DELETE(audioManager);
 	SAFE_DELETE(graphicsManager);

@@ -3,7 +3,7 @@
 
 #include <string>
 #include "IGameComponent.h"
-#include "../Script/ScriptManager.h"
+#include "../Script/XMLScriptManager.h"
 
 // Component that stores gameplay variables for an entity
 class StatsComponent : public IGameComponent

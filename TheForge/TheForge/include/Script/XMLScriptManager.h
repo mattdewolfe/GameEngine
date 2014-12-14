@@ -1,5 +1,5 @@
-#ifndef SCRIPTMANAGER_H
-#define SCRIPTMANAGER_H
+#ifndef XML_SCRIPT_MANAGER_H
+#define XML_SCRIPT_MANAGER_H
 
 #include <assert.h>
 #include <Windows.h>
@@ -20,11 +20,11 @@
    OutputDebugStringW( os_.str().c_str() );  \
 }
 
-class ScriptManager
+class XMLScriptManager
 {
 public:
-	ScriptManager();
-	~ScriptManager();
+	XMLScriptManager();
+	~XMLScriptManager();
 
 	bool Init();
 	void Update(float _dt);
@@ -42,6 +42,7 @@ private:
 	int GetVariableFromScript(char* _node, char* _name, int *var);
 	bool GetVariableFromScript(char* _node, char* _name, bool *var);
 	std::string GetVariableFromScript(char* _node, char* _name, std::string *var);
+	
 	/* For further functionilty, we could look into changing the variables stored in our scripts
 	* from inside our engine, add additional component parameters to be created via script, 
 	* or add in the ability to run functions based entirely on scripting 

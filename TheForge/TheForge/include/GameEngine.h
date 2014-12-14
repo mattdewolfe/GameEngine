@@ -12,7 +12,8 @@
 #include "ResourceLoader.h"
 #include "Events\EventManager.h"
 #include "DebugManager.h"
-#include "Script\ScriptManager.h"
+#include "Script\XMLScriptManager.h"
+#include "Script\LuaScriptManager.h"
 #include "Graphics\Camera.h"
 #include "Timer.h"
 
@@ -63,7 +64,7 @@ private:
 	AudioManager* audioManager;
 	ECSManager* ecsManager;
 	InputManager* inputManager;
-	ScriptManager* scriptManager;
+	XMLScriptManager* XMLscriptManager;
 	EventManager* eventManager;
 	DebugManager* debugManager;
 	ResourceLoader* resourceLoader;

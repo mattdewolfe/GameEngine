@@ -34,7 +34,9 @@
     <ClInclude Include="include\GUI\GUIStateManager.h" />
     <ClInclude Include="include\Input\InputManager.h" />
     <ClInclude Include="include\ResourceLoader.h" />
-    <ClInclude Include="include\Script\ScriptManager.h" />
+    <ClInclude Include="include\Script\ILuaScriptManager.h" />
+    <ClInclude Include="include\Script\LuaScriptManager.h" />
+    <ClInclude Include="include\Script\XMLScriptManager.h" />
     <ClInclude Include="include\Timer.h" />
   </ItemGroup>
   <ItemGroup>
@@ -48,7 +50,7 @@
     <ClCompile Include="src\GUI\GUIStateManager.cpp" />
     <ClCompile Include="src\Input\InputManager.cpp" />
     <ClCompile Include="src\ResourceLoader.cpp" />
-    <ClCompile Include="src\Script\ScriptManager.cpp" />
+    <ClCompile Include="src\Script\XMLScriptManager.cpp" />
     <ClCompile Include="src\source.cpp" />
     <ClCompile Include="src\Timer.cpp" />
   </ItemGroup>

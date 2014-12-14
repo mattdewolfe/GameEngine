@@ -1,0 +1,4 @@
+#ifndef LUA_SCRIPT_MANAGER_H
+#define LUA_SCRIPT_MANAGER_H
+
+#endif
