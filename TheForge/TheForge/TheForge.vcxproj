@@ -82,7 +82,7 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(MSBuildProjectDirectory)\LUAPlus\include\;$(MSBuildProjectDirectory)\include\Audio\fmod;$(MSBuildProjectDirectory)\include\;C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Include;$(IncludePath)</IncludePath>
+    <IncludePath>$(MSBuildProjectDirectory)\LUAPlus\include\;$(MSBuildProjectDirectory)\rapidXML\;$(MSBuildProjectDirectory)\include\Audio\fmod;$(MSBuildProjectDirectory)\include\;C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Include;$(IncludePath)</IncludePath>
     <LibraryPath>$(MSBuildProjectDirectory)\src\Audio\lib;$(MSBuildProjectDirectory)\LUAPlus\lib\;$(MSBuildProjectDirectory)\src\;C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Lib\x86;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
