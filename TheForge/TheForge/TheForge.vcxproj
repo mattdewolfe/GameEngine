@@ -40,6 +40,7 @@
     <ClInclude Include="include\Timer.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="LuaScriptManager.cpp" />
     <ClCompile Include="src\Audio\AudioManager.cpp" />
     <ClCompile Include="src\DebugManager.cpp" />
     <ClCompile Include="src\Events\EventManager.cpp" />

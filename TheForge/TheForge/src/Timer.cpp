@@ -19,7 +19,7 @@ bool Timer::Init(EventManager* _events)
 {
 	EventListenerDelegate delegateFunction = 
 		fastdelegate::MakeDelegate(this, &Timer::TimerPausedDelegate);
-		
+	
 	_events->VAddListener(delegateFunction, 
 		EVENT_Timer_Paused);
 

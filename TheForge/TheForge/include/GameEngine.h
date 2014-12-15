@@ -64,7 +64,8 @@ private:
 	AudioManager* audioManager;
 	ECSManager* ecsManager;
 	InputManager* inputManager;
-	XMLScriptManager* XMLscriptManager;
+	XMLScriptManager* xmlScriptManager;
+	LuaScriptManager* luaScriptManager;
 	EventManager* eventManager;
 	DebugManager* debugManager;
 	ResourceLoader* resourceLoader;

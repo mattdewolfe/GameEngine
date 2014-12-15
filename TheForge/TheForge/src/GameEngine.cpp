@@ -79,13 +79,20 @@ bool GameEngine::Init()
 		return false;
 	}
 
-	XMLscriptManager = new XMLScriptManager();
-	if (!XMLscriptManager)
+	xmlScriptManager = new XMLScriptManager();
+	if (!xmlScriptManager)
 	{
 		return false;
 	}
 
-	initResult = XMLscriptManager->Init();
+	initResult = xmlScriptManager->Init();
+	if (initResult==false)
+	{
+		return false;
+	}
+
+	// Lua script managers do not use a new call, only create and destroy functions
+	initResult = luaScriptManager->Create();
 	if (initResult==false)
 	{
 		return false;
@@ -113,7 +120,7 @@ void GameEngine::ScriptTest()
 	* StatsComponents xml file (located in root/scripts)
 	* -MD */
 	StatsComponent* testXML = new StatsComponent("Player");
-	XMLscriptManager->LoadStatsFromScript(testXML, testXML->statClass);
+	xmlScriptManager->LoadStatsFromScript(testXML, testXML->statClass);
 	// Uncomment and toss a break point here if you want to check values set in the script component
 	std::string name = testXML->GetName();
 	SAFE_DELETE(testXML);	
@@ -229,7 +236,7 @@ bool GameEngine::Update()
 
 	audioManager->PlaySFX("pullup.mp3");
 
-	XMLscriptManager->Update(tick);
+	xmlScriptManager->Update(tick);
 	RenderFrame();
 	
 	// DEBUG demo for input system
@@ -259,20 +266,23 @@ void GameEngine::Shutdown()
 {
 	// Call shutdown on all game systems
 	// in reverse order of intialization
-	XMLscriptManager->Shutdown();
+	xmlScriptManager->Shutdown();
 	audioManager->Shutdown();
 	graphicsManager->Shutdown();
 	inputManager->Shutdown();
 	resourceLoader->Shutdown();
 	
 	// Free memory and delete pointers
-	SAFE_DELETE(XMLscriptManager);
+	SAFE_DELETE(xmlScriptManager);
 	SAFE_DELETE(eventManager);
 	SAFE_DELETE(audioManager);
 	SAFE_DELETE(graphicsManager);
 	SAFE_DELETE(camera);
 	SAFE_DELETE(inputManager);
 	SAFE_DELETE(resourceLoader);
+
+	// Lua script managers only need a destroy call
+	luaScriptManager->Destroy();
 }
 // Shutdown calls specific to window(s)
 void GameEngine::ShutDownWindows()

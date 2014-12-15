@@ -176,5 +176,8 @@
     <ClCompile Include="src\Script\XMLScriptManager.cpp">
       <Filter>Source Files\ScriptSystem</Filter>
     </ClCompile>
+    <ClCompile Include="LuaScriptManager.cpp">
+      <Filter>Source Files\ScriptSystem</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
