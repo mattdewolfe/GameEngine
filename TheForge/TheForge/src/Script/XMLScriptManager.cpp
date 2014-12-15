@@ -20,7 +20,7 @@ float XMLScriptManager::GetVariableFromScript(char* _node, char* _name, float* v
 			// If we find a second decimal place, break and ignore further values
 			if (afterDecimal == true)
 			{
-				DBOUT("SCRIPT: Read float: Terminated early due to second decimal.");
+				DBOUT("XML: Read float: Terminated early due to second decimal.");
 				break;
 			}
 			afterDecimal = true;
@@ -33,7 +33,7 @@ float XMLScriptManager::GetVariableFromScript(char* _node, char* _name, float* v
 				total += (float)(ret[i] - '0')/10;
 		}
 	}
-	DBOUT("SCRIPT: Read float: " << total);
+	DBOUT("XML: Read float: " << total);
 	return total;
 }
 
@@ -43,7 +43,7 @@ int XMLScriptManager::GetVariableFromScript(char* _node, char* _name, int* var)
 	rapidxml::xml_node<>* targetNode = parent->first_node(_node);
 	rapidxml::xml_node<>* targetAttr = targetNode->first_node(_name);
 	int ret = std::stoi(targetAttr->value());
-	DBOUT("SCRIPT: Read int: " << ret);
+	DBOUT("XML: Read int: " << ret);
 	return ret;
 }
 
@@ -55,12 +55,12 @@ bool XMLScriptManager::GetVariableFromScript(char* _node, char* _name, bool* var
 	char* attr = targetAttr->value();
 	if (attr[0] == 't' || attr[0] == 'T')
 	{ 
-		DBOUT("SCRIPT: Read bool: true");
+		DBOUT("XML: Read bool: true");
 		return true;
 	}
 	else
 	{
-		DBOUT("SCRIPT: Read bool: false");
+		DBOUT("XML: Read bool: false");
 		return false;
 	}
 }
@@ -71,7 +71,7 @@ std::string XMLScriptManager::GetVariableFromScript(char* _node, char* _name, st
 	rapidxml::xml_node<>* targetNode = parent->first_node(_node);
 	rapidxml::xml_node<>* targetAttr = targetNode->first_node(_name);
 	std::string ret = targetAttr->value();
-	DBOUT("SCRIPT: Read string: " << targetAttr->value());
+	DBOUT("XML: Read string: " << targetAttr->value());
 	return ret;
 }
 
@@ -107,7 +107,7 @@ bool XMLScriptManager::LoadScript(const char* _fileName)
 	{
 		doc.parse<0>(xmlFile->data());
 	}
-	DBOUT( "SCRIPT: Loaded " << doc.first_node()->name() << " script." );
+	DBOUT( "XML: Loaded " << doc.first_node()->name() << " script." );
 	return false;
 }
 

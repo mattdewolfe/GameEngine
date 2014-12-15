@@ -73,7 +73,6 @@ private:
 	Camera* camera;
 
 	Timer timer;
-	bool isPaused;
 
 	float framesPerSecond;
 };

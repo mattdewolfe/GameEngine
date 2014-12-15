@@ -105,10 +105,6 @@ bool GameEngine::Init()
 	
 	framesPerSecond = 0;
 
-	isPaused = false;
-
-	ScriptTest();
-
 	return initResult;
 }
 
@@ -124,6 +120,14 @@ void GameEngine::ScriptTest()
 	// Uncomment and toss a break point here if you want to check values set in the script component
 	std::string name = testXML->GetName();
 	SAFE_DELETE(testXML);	
+
+	LuaScriptManager::Get()->VExecuteFile("scripts\\luaTestFunction");
+	// This will call a function from lua, and output the result to the VS output window
+	LuaPlus::LuaState* plState = LuaScriptManager::Get()->GetLuaState();
+	LuaPlus::LuaFunction<float> luaSquare = plState->GetGlobal("Square");
+	float inVal = 9.0f;
+	float testFunc = luaSquare(inVal);
+	DBOUT ("LUA TEST: " << inVal << " squared = " << testFunc);
 }
 
 // Initialize window and windows elements
@@ -215,14 +219,21 @@ bool GameEngine::Update()
 {
 	float tick;
 
-	if(isPaused)
+	// RYAN, 
+	// Use a pause check to do a single script read for a components stats
+	// from xml and a function call from lua
+	// As well as playing a sound effect for an audio test
+	if(timer.isPaused == false)
 	{
-		return true;
+		ScriptTest();
+
+		audioManager->PlaySFX("pullup.mp3");
 	}
 
 	timer.Update();
 	tick = timer.GetDeltaTime();
-	// RYAN - See below
+
+	// RYAN,
 	// Passing in the event manager for the time being
 	// This is a dirty method that will be resolved upon global access decision
 	// Attempted using the books Static Get method, and it Static Sucks.
@@ -233,8 +244,6 @@ bool GameEngine::Update()
 	inputManager->Update(tick);
 	eventManager->VUpdate();
 	audioManager->Update(tick);
-
-	audioManager->PlaySFX("pullup.mp3");
 
 	xmlScriptManager->Update(tick);
 	RenderFrame();

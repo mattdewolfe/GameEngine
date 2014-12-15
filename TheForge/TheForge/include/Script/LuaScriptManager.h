@@ -26,7 +26,7 @@ public:
 
 	LuaPlus::LuaObject GetGlobalVars();
     LuaPlus::LuaState* GetLuaState() const;
-    
+
 private:
     void SetError(int errorNum);
     void ClearStack();

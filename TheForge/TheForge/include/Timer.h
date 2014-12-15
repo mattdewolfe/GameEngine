@@ -8,10 +8,12 @@ class Timer
 {
 private:
 	time_t current;
-	bool isPaused;
+	
 public:
 	Timer();
 	~Timer();
+
+	bool isPaused;
 
 	bool Init(EventManager* _events);
 	// Start/restart the timer

@@ -5,13 +5,13 @@ LuaScriptManager* LuaScriptManager::ptrSingleton = NULL;
 
 bool LuaScriptManager::Create(void)
 {
-    if (ptrSingleton)
+    if (ptrSingleton != NULL)
     {
         delete ptrSingleton;
     }
 
-    ptrSingleton = new LuaScriptManager;
-    if (ptrSingleton)
+    ptrSingleton = new LuaScriptManager();
+    if (ptrSingleton != NULL)
         return ptrSingleton->Init();
 
     return false;
@@ -20,7 +20,7 @@ bool LuaScriptManager::Create(void)
 void LuaScriptManager::Destroy(void)
 {
 	delete ptrSingleton;
-	ptrSingleton = nullptr;
+	ptrSingleton = NULL;
 }
 
 LuaScriptManager::LuaScriptManager(void)
@@ -100,8 +100,7 @@ void LuaScriptManager::ClearStack(void)
 
 LuaPlus::LuaObject LuaScriptManager::GetGlobalVars(void)
 {
-    if (ptrLuaState)
-		return ptrLuaState->GetGlobals();
+    return ptrLuaState->GetGlobals();
 }
 
 LuaPlus::LuaState* LuaScriptManager::GetLuaState(void) const
