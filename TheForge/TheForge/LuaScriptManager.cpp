@@ -47,13 +47,19 @@ bool LuaScriptManager::Init(void)
     // register functions
     ptrLuaState->GetGlobals().RegisterDirect("ExecuteFile", (*this), &LuaScriptManager::VExecuteFile);
     ptrLuaState->GetGlobals().RegisterDirect("ExecuteString", (*this), &LuaScriptManager::VExecuteString);
-	ptrLuaState->GetGlobals().RegisterDirect("ScriptTest", (*this), &LuaScriptManager::ScriptTest);
+	ptrLuaState->GetGlobals().RegisterDirect("ScriptTest1", (*this), &LuaScriptManager::ScriptTest1);
+	ptrLuaState->GetGlobals().RegisterDirect("ScriptTest2", (*this), &LuaScriptManager::ScriptTest2);
     return true;
 }
 
-void LuaScriptManager::ScriptTest(void)
+void LuaScriptManager::ScriptTest1(void)
 {
-	DBOUT("LUA: Called ScripTest from script");
+	DBOUT("LUA: Called a function from script");
+}
+
+void LuaScriptManager::ScriptTest2(void)
+{
+	DBOUT("LUA: Called another function from script");
 }
 
 void LuaScriptManager::VExecuteFile(const char* path)

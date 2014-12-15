@@ -46,7 +46,8 @@ public:
 	// A few helper functions
 	LuaPlus::LuaObject CreatePath(const char* pathString, bool toIgnoreLastElement = false);
 	void Split(const std::string& str, StringVec& vec, char delimiter);
-	void ScriptTest();
+	void ScriptTest1();
+	void ScriptTest2();
 
 private:
     void SetError(int errorNum);

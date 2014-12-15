@@ -1,2 +1,2 @@
-ScriptTest()
-ScriptTest()
+ScriptTest1()
+ScriptTest2()
