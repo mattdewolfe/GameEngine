@@ -4,6 +4,7 @@
 #define SAFE_DELETE(p) { if (p) { delete(p); p = NULL; } }
 #include <Windows.h>
 #include <WindowsX.h>
+#include <LuaPlus.h>
 
 #include "Audio\AudioManager.h"
 #include "ECS\ECSManager.h"

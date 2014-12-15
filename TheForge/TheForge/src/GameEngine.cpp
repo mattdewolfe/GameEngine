@@ -118,16 +118,23 @@ void GameEngine::ScriptTest()
 	StatsComponent* testXML = new StatsComponent("Player");
 	xmlScriptManager->LoadStatsFromScript(testXML, testXML->statClass);
 	// Uncomment and toss a break point here if you want to check values set in the script component
-	std::string name = testXML->GetName();
+	// std::string name = testXML->GetName();
+	
+	// Clean up
 	SAFE_DELETE(testXML);	
 
-	LuaScriptManager::Get()->VExecuteFile("scripts\\luaTestFunction");
-	// This will call a function from lua, and output the result to the VS output window
+	// Test LUA script
+	// Should call this script, printing out the same message twice to output window
 	LuaPlus::LuaState* plState = LuaScriptManager::Get()->GetLuaState();
-	LuaPlus::LuaFunction<float> luaSquare = plState->GetGlobal("Square");
-	float inVal = 9.0f;
-	float testFunc = luaSquare(inVal);
-	DBOUT ("LUA TEST: " << inVal << " squared = " << testFunc);
+	plState->GetGlobals();
+	if (plState->DoFile("scripts\\luaTest.lua"))
+	{ 
+		// Any case code may go in here
+	}
+	
+	// Clean up
+	LuaPlus::LuaState::Destroy(plState);
+	plState = nullptr;
 }
 
 // Initialize window and windows elements
@@ -226,7 +233,6 @@ bool GameEngine::Update()
 	if(timer.isPaused == false)
 	{
 		ScriptTest();
-
 		audioManager->PlaySFX("pullup.mp3");
 	}
 
