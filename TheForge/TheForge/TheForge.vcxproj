@@ -11,6 +11,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="GUIWindow.h" />
     <ClInclude Include="include\Audio\AudioManager.h" />
     <ClInclude Include="include\DebugManager.h" />
     <ClInclude Include="include\ECS\BoxColliderComponent.h" />
@@ -50,6 +51,9 @@
     <ClCompile Include="src\Script\ScriptManager.cpp" />
     <ClCompile Include="src\source.cpp" />
     <ClCompile Include="src\Timer.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Shaders.shader" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{AB336DDB-A014-4ADC-8589-8C0526695824}</ProjectGuid>

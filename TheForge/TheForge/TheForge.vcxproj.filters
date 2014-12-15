@@ -52,6 +52,9 @@
     <Filter Include="Source Files\GUI">
       <UniqueIdentifier>{e4d90ce3-477c-42df-ae64-01d3ba5963cc}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Shaders">
+      <UniqueIdentifier>{61099425-72e8-46f2-8175-a4c0f5a31ba9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\GameEngine.h">
@@ -126,6 +129,9 @@
     <ClInclude Include="include\GUI\GUIStateManager.h">
       <Filter>Header Files\GUI</Filter>
     </ClInclude>
+    <ClInclude Include="GUIWindow.h">
+      <Filter>Header Files\GUI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\GameEngine.cpp">
@@ -167,5 +173,10 @@
     <ClCompile Include="src\GUI\GUIStateManager.cpp">
       <Filter>Source Files\GUI</Filter>
     </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Shaders.shader">
+      <Filter>Source Files\Shaders</Filter>
+    </None>
   </ItemGroup>
 </Project>

@@ -24,7 +24,7 @@ public:
 	~GameEngine();
 
 	// Initialize engine classes and resources
-	bool Init();
+	bool Init(HINSTANCE);
 	// Initialize window with width height values
 	bool InitializeWindows(int, int);
 	// Update game world (based on frame time)

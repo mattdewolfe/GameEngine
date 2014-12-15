@@ -25,7 +25,7 @@ InputManager::InputManager()
 
 bool InputManager::Init()
 {
-	//inputLocaleIdentifier = LoadKeyboardLayout((LPCWSTR)"00000409", KLF_ACTIVATE);
+	inputLocaleIdentifier = LoadKeyboardLayout((LPCWSTR)"00000409", KLF_ACTIVATE);
 
 	keyStates = new KeyState[256];
 	// TODO: typing this out made me sad. Find a better way of storing mouse button information
@@ -98,8 +98,6 @@ bool InputManager::GetKey(unsigned int _key)
 {
 	return keyStates[_key].currentKeyState;
 }
-
-// Removed char support due to inability to create an HKL object (see InputManager.h)
 
 bool InputManager::GetKey(char _c)
 {

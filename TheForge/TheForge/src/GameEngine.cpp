@@ -9,7 +9,7 @@ GameEngine::~GameEngine()
 { }
 
 // Initialize engine classes and resources
-bool GameEngine::Init()
+bool GameEngine::Init(HINSTANCE hInstance)
 {
 	// Handle each bool return from individual system
 	// initializations. If ever false the engine has failed 
@@ -18,9 +18,11 @@ bool GameEngine::Init()
 	
 	// Setup window, at size 0, 0 to start
 	int screenWidth, screenHeight;
-	screenWidth = 0;
-	screenHeight = 0;
-	InitializeWindows(0, 0);
+	screenWidth = 800;
+	screenHeight = 600;
+	InitializeWindows(screenWidth, screenHeight);
+
+	GameEngine::hInstance = hInstance;
 	
 	eventManager = new EventManager("eventSys", true);
 	if (!eventManager)
@@ -132,8 +134,8 @@ bool GameEngine::InitializeWindows(int _width, int _height)
                           WS_OVERLAPPEDWINDOW,    // window style
                           300,    // x-position of the window
                           300,    // y-position of the window
-                          500,    // width of the window
-                          400,    // height of the window
+                          _width,    // width of the window
+                          _height,    // height of the window
                           NULL,    // we have no parent window, NULL
                           NULL,    // we aren't using menus, NULL
                           hInstance,    // application handle
@@ -214,13 +216,19 @@ bool GameEngine::Update()
 	RenderFrame();
 	
 	// DEBUG demo for input system
+	// Character input demo
 	if (inputManager->GetKeyDown('a'))
 	{
 		DBOUT("button 'a' pressed");
 	}
-	else if (inputManager->GetKeyUp('a'))
+	if (inputManager->GetKeyUp('a'))
 	{
 		DBOUT("button 'a' released");
+	}
+	// KeyCode input demo
+	if (inputManager->GetKeyUp((unsigned int)66))
+	{
+		DBOUT("button 'b' released");
 	}
 
 	return true;
@@ -229,7 +237,8 @@ bool GameEngine::Update()
 // Renders the next frame
 void GameEngine::RenderFrame()
 {
-	graphicsManager->D3D_Render();
+	//graphicsManager->D3D_Render();
+	graphicsManager->RenderFrame();
 }
 // Hault update calls by engine
 void GameEngine::Pause()

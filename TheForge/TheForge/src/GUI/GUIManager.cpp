@@ -22,6 +22,7 @@ void GUIManager::Render()
 
 void GUIManager::Shutdown()
 {
+
 }
 
 void GUIManager::AddElement(GUIElement _emt, float _txWidth, float _txHeight)
