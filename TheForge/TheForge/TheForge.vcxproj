@@ -29,9 +29,13 @@
     <ClInclude Include="include\GameEngine.h" />
     <ClInclude Include="include\Graphics\Camera.h" />
     <ClInclude Include="include\Graphics\GraphicsManager.h" />
+    <ClInclude Include="include\GUI\GUIBox.h" />
+    <ClInclude Include="include\GUI\GUIButton.h" />
     <ClInclude Include="include\GUI\GUIElements.h" />
     <ClInclude Include="include\GUI\GUIManager.h" />
     <ClInclude Include="include\GUI\GUIStateManager.h" />
+    <ClInclude Include="include\GUI\GUIWindow.h" />
+    <ClInclude Include="include\GUI\Vertex.h" />
     <ClInclude Include="include\Input\InputManager.h" />
     <ClInclude Include="include\ResourceLoader.h" />
     <ClInclude Include="include\Script\ILuaScriptManager.h" />
@@ -47,13 +51,19 @@
     <ClCompile Include="src\GameEngine.cpp" />
     <ClCompile Include="src\Graphics\Camera.cpp" />
     <ClCompile Include="src\Graphics\GraphicsManager.cpp" />
+    <ClCompile Include="src\GUI\GUIBox.cpp" />
+    <ClCompile Include="src\GUI\GUIButton.cpp" />
     <ClCompile Include="src\GUI\GUIManager.cpp" />
     <ClCompile Include="src\GUI\GUIStateManager.cpp" />
+    <ClCompile Include="src\GUI\GUIWindow.cpp" />
     <ClCompile Include="src\Input\InputManager.cpp" />
     <ClCompile Include="src\ResourceLoader.cpp" />
     <ClCompile Include="src\Script\XMLScriptManager.cpp" />
     <ClCompile Include="src\source.cpp" />
     <ClCompile Include="src\Timer.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Shaders.shader" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{AB336DDB-A014-4ADC-8589-8C0526695824}</ProjectGuid>

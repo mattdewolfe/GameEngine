@@ -16,6 +16,11 @@
 #include "Script\XMLScriptManager.h"
 #include "Script\LuaScriptManager.h"
 #include "Graphics\Camera.h"
+
+// Removed, circular dependencies. Forward declared instead
+// TODO find out if this is the proper solution to circular dependencies
+//#include "GUI\GUIManager.h"
+class GUIManager;
 #include "Timer.h"
 
 class GameEngine
@@ -26,7 +31,7 @@ public:
 	~GameEngine();
 
 	// Initialize engine classes and resources
-	bool Init();
+	bool Init(HINSTANCE);
 	// Initialize window with width height values
 	bool InitializeWindows(int, int);
 	// Update game world (based on frame time)
@@ -47,6 +52,9 @@ public:
 	void CalculateFPS();
 	// A simple test of scripting system
 	void ScriptTest();
+	// Temporary function to set up the demo GUI
+	bool BuildTestGUI();
+
 	//get/sets.
 	AudioManager* GetAudioManager()
 	{ return audioManager; } 
@@ -71,6 +79,7 @@ private:
 	DebugManager* debugManager;
 	ResourceLoader* resourceLoader;
 	GraphicsManager* graphicsManager;
+	//GUIManager* guiManager;
 	Camera* camera;
 
 	Timer timer;

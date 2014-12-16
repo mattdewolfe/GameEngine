@@ -5,7 +5,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR pScmdline,
 	GameEngine* engine;
 	engine = new GameEngine();
 
-	if (engine->Init() == false)
+	if (engine->Init(hInstance) == false)
 	{
 		return 0;
 	}
