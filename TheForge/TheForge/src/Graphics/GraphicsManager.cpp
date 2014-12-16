@@ -3,16 +3,20 @@
 GraphicsManager::GraphicsManager()
 {
 	vertexCount = 0;
+	guiVertexCount = 0;
 }
 
 GraphicsManager::~GraphicsManager()
 { }
 
-bool GraphicsManager::Init(int screenWidth, int screenHeight, HWND hWnd, Camera* camera)
-{
-	GraphicsManager::screenWidth = screenWidth;
-	GraphicsManager::screenHeight = screenHeight;
-	GraphicsManager::hWnd = hWnd;
+bool GraphicsManager::Init(int _screenWidth, int _screenHeight, HWND _hWnd, Camera* _camera)
+{	
+	GraphicsManager::screenWidth = _screenWidth;
+	GraphicsManager::screenHeight = _screenHeight;
+	GraphicsManager::hWnd = _hWnd;
+
+	pGUIManager = new GUIManager();
+	pGUIManager->Init(screenWidth, screenHeight);
 
 	#pragma region D3Dinitialization
 	// create a struct to hold information about the swap chain
@@ -107,28 +111,31 @@ void GraphicsManager::InitPipeline()
 
 void GraphicsManager::InitGraphics()
 {
+	/*
     // create a triangle using the VERTEX struct
-    vertices[0] = VERTEX(0.0f, 0.5f, 0.0f, D3DXCOLOR(1.0f, 0.0f, 0.0f, 1.0f));
-    vertices[1] = VERTEX(0.45f, -0.5, 0.0f, D3DXCOLOR(0.0f, 1.0f, 0.0f, 1.0f));
-    vertices[2] = VERTEX(-0.45f, -0.5f, 0.0f, D3DXCOLOR(0.0f, 0.0f, 1.0f, 1.0f));
+    vertices[0] = Vertex(0.0f, 0.5f, 0.0f, D3DXCOLOR(1.0f, 0.0f, 0.0f, 1.0f));
+    vertices[1] = Vertex(0.45f, -0.5, 0.0f, D3DXCOLOR(0.0f, 1.0f, 0.0f, 1.0f));
+    vertices[2] = Vertex(-0.45f, -0.5f, 0.0f, D3DXCOLOR(0.0f, 0.0f, 1.0f, 1.0f));
 	vertexCount+=3;
+	*/
 
     // create the vertex buffer
     D3D11_BUFFER_DESC bd;
     ZeroMemory(&bd, sizeof(bd));
 
 	bd.Usage = D3D11_USAGE_DYNAMIC;                // write access access by CPU and GPU
-    bd.ByteWidth = sizeof(VERTEX) * 6;             // size is the VERTEX struct * 3
+    bd.ByteWidth = sizeof(Vertex) * 256;             // size is the VERTEX struct * 3
     bd.BindFlags = D3D11_BIND_VERTEX_BUFFER;       // use as a vertex buffer
     bd.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;    // allow CPU to write in buffer
 
-    dev->CreateBuffer(&bd, NULL, &pVBuffer);       // create the buffer
+    dev->CreateBuffer(&bd, NULL, &pVBuffer);       // create the buffers
+	dev->CreateBuffer(&bd, NULL, &pVGUIBuffer);
 
 
     // copy the vertices into the buffer
     D3D11_MAPPED_SUBRESOURCE ms;
     devcon->Map(pVBuffer, NULL, D3D11_MAP_WRITE_DISCARD, NULL, &ms);    // map the buffer
-    memcpy(ms.pData, vertices, sizeof(vertices));                 // copy the data
+    memcpy(ms.pData, vertices, sizeof(vertices));						// copy the data
     devcon->Unmap(pVBuffer, NULL);                                      // unmap the buffer
 }
 
@@ -139,7 +146,7 @@ void GraphicsManager::RenderFrame(void)
     devcon->ClearRenderTargetView(backbuffer, D3DXCOLOR(0.5f, 0.7f, 0.9f, 1.0f));
 
         // select which vertex buffer to display
-        UINT stride = sizeof(VERTEX);
+        UINT stride = sizeof(Vertex);
         UINT offset = 0;
 
 		// default vertex buffer
@@ -148,6 +155,13 @@ void GraphicsManager::RenderFrame(void)
         devcon->IASetPrimitiveTopology(D3D10_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
         // draw the vertex buffer to the back buffer
         devcon->Draw(vertexCount, 0);
+
+		// GUI vertex buffer
+		devcon->IASetVertexBuffers(0, 1, &pVGUIBuffer, &stride, &offset);
+        // select which primtive type we are using
+        devcon->IASetPrimitiveTopology(D3D10_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
+        // draw the vertex buffer to the back buffer
+		devcon->Draw(guiVertexCount, 0);
 
 
     // switch the back buffer and the front buffer
@@ -165,6 +179,27 @@ void GraphicsManager::D3D_Render ()
     devcon->ClearRenderTargetView(backbuffer, D3DXCOLOR(0.5f, 0.7f, 0.9f, 1.0f));
 
     swapchain->Present(0, 0);
+}
+
+void GraphicsManager::UpdateGUIVertexBuffer ()
+{
+	// copy the vertices into the buffer
+    D3D11_MAPPED_SUBRESOURCE ms;
+	// TODO: since were passing these by reference, need to reset it. Seems sloppy, look into alternative
+	// Also note that since guiVertices is size 256, having any more verts than that will likely cause a crash
+	// Definitely a high priority fix
+	pGUIManager->GetUpdatedVertices(guiVertices, guiVertexCount);
+	// convert from pixels to DirectX units
+	// TODO: look into a better time to convert between pixel coordinates and directX coordinates
+	for (int i = 0; i < guiVertexCount; ++i)
+	{
+		guiVertices[i].X = (guiVertices[i].X - (screenWidth/2)) / (screenWidth/2);
+		guiVertices[i].Y = (-1)*(guiVertices[i].Y - (screenHeight/2)) / (screenHeight/2);
+	}
+
+    devcon->Map(pVGUIBuffer, NULL, D3D11_MAP_WRITE_DISCARD, NULL, &ms);		// map the buffer
+    memcpy(ms.pData, guiVertices, sizeof(guiVertices));						// copy the data
+    devcon->Unmap(pVGUIBuffer, NULL);										// unmap the buffer
 }
 
 void GraphicsManager::Shutdown ()

@@ -17,30 +17,12 @@
 #pragma comment (lib, "d3dx11.lib")
 #pragma comment (lib, "d3dx10.lib")
 
+#include "GUI\GUIManager.h";
+#include "GUI\Vertex.h"
+
 // function prototypes
 void InitD3D(HWND hWnd);     // sets up and initializes Direct3D
 void CleanD3D(void);         // closes Direct3D and releases memory
-
-// TEMP DELETE used in tutorial, replace with our own vertex type when the time comes
-// a struct to define a vertex
-struct VERTEX
-{
-	VERTEX()
-	{
-		X = 0;
-		Y = 0;
-		Z = 0;
-		Color = D3DXCOLOR(0,0,0,1);
-	}
-	VERTEX (float _x, float _y, float _z, D3DXCOLOR _color)
-	{
-		X = _x;
-		Y = _y;
-		Z = _z;
-		Color = _color;
-	}
-	FLOAT X, Y, Z; D3DXCOLOR Color;
-};    // a struct to define a vertex
 
 class GraphicsManager
 {
@@ -59,12 +41,18 @@ public:
 	void InitPipeline();
 	void InitGraphics();
 	void GraphicsManager::RenderFrame(void);
-
 	void GraphicsManager::AddTriangle ();
 
+	GUIManager* GetGUIManager() { return pGUIManager; }
+
 	// EARLY PROTOTYPE, REMOVE
-	VERTEX vertices[6];
+	Vertex vertices[6];
 	UINT vertexCount;
+	// TODO find a way to properly set the size of these buffers
+	Vertex guiVertices[256];
+	UINT guiVertexCount;
+	// TODO: find proper way of keeping VBuffers up to date
+	void UpdateGUIVertexBuffer ();
 
 private:
 	int screenWidth, screenHeight;
@@ -78,6 +66,10 @@ private:
 	ID3D11PixelShader *pPS;     // the pixel shader
 	
 	ID3D11Buffer *pVBuffer;		// vertex buffer
+	// TODO: find out how to properly handle having different buffers. 
+	ID3D11Buffer *pVGUIBuffer;		// GUI vertex buffer
 	ID3D11InputLayout *pLayout;	// input layout object
+
+	GUIManager *pGUIManager;
 };
 #endif

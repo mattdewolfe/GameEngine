@@ -92,6 +92,19 @@ bool GameEngine::Init(HINSTANCE hInstance)
 		return false;
 	}
 
+	/*
+	guiManager = new GUIManager;
+	if (!guiManager)
+	{
+		return false;
+	}
+
+	initResult = guiManager->Init(this, screenWidth, screenHeight);
+	if (initResult==false)
+	{
+		return false;
+	}*/
+
 	debugManager = new DebugManager();
 
 	timer = Timer();
@@ -100,6 +113,12 @@ bool GameEngine::Init(HINSTANCE hInstance)
 	framesPerSecond = 0;
 
 	isPaused = false;
+
+	// DEBUG TO BE REMOVED
+	if (!BuildTestGUI())
+	{
+		DBOUT ("GUI failed to build");
+	}
 
 	return initResult;
 }
@@ -127,6 +146,8 @@ bool GameEngine::InitializeWindows(int _width, int _height)
     // register the window class
     RegisterClassEx(&wc);
 
+	RECT wr = {0, 0, _width, _height};
+	AdjustWindowRect(&wr, WS_OVERLAPPEDWINDOW, FALSE);
     // create the window and use the result as the handle
     hWnd = CreateWindowEx(NULL,
                           L"WindowClass1",    // name of the window class
@@ -134,8 +155,8 @@ bool GameEngine::InitializeWindows(int _width, int _height)
                           WS_OVERLAPPEDWINDOW,    // window style
                           300,    // x-position of the window
                           300,    // y-position of the window
-                          _width,    // width of the window
-                          _height,    // height of the window
+                          wr.right - wr.left,    // width of the window
+                          wr.bottom - wr.top,    // height of the window
                           NULL,    // we have no parent window, NULL
                           NULL,    // we aren't using menus, NULL
                           hInstance,    // application handle
@@ -231,6 +252,28 @@ bool GameEngine::Update()
 		DBOUT("button 'b' released");
 	}
 
+	if (inputManager->GetMouseButtonDown(0))
+	{
+		DBOUT("mouse left click");
+		DBOUT(inputManager->GetMouseX());
+		DBOUT(inputManager->GetMouseY());
+		graphicsManager->GetGUIManager()->GetRootWindow()->OnClick(Vector2(inputManager->GetMouseX(), inputManager->GetMouseY()));
+		// if a button is clicked, we need to update its vertex data.
+		// TODO: I need to set up a system to trigger the vertex data update when an event occurs. Without this event, I'll simply assume something changed and rebuild the data
+		// this is sloppy and should be corrected
+		graphicsManager->UpdateGUIVertexBuffer();
+	}
+
+	// reset all button states on mouse up. 
+	// TODO: Probably a better way to do this.
+	if (inputManager->GetMouseButtonUp(0))
+	{
+		graphicsManager->GetGUIManager()->GetRootWindow()->OnRelease();
+		graphicsManager->UpdateGUIVertexBuffer();
+	}
+
+	
+
 	return true;
 }
 
@@ -243,6 +286,38 @@ void GameEngine::RenderFrame()
 // Hault update calls by engine
 void GameEngine::Pause()
 {
+
+}
+
+// Temporary function to set up the demo GUI
+bool GameEngine::BuildTestGUI()
+{
+	GUIBox* parentBox = new GUIBox(Vector2(10,10), Vector2(400,300), D3DXCOLOR (0.49,0.55,0.55,1.0), GWT_BOX);
+	if (!graphicsManager->GetGUIManager()->AddWindow(parentBox))
+		return false;
+	GUIButton* button = new GUIButton(Vector2(10,10), Vector2(80,50), D3DXCOLOR (0.17,0.24,0.31,1.0), GWT_BUTTON);
+	if (!parentBox->AddWindow(button))
+		return false;
+	button = new GUIButton(Vector2(120,10), Vector2(80,50), D3DXCOLOR (0.17,0.24,0.31,1.0), GWT_BUTTON);
+	if (!parentBox->AddWindow(button))
+		return false;
+	GUIBox* parentBox2 = new GUIBox(Vector2(10,410), Vector2(780,180), D3DXCOLOR (0.49,0.55,0.55,1.0), GWT_BOX);
+	if (!graphicsManager->GetGUIManager()->AddWindow(parentBox2))
+		return false;
+	button = new GUIButton(Vector2(44,20), Vector2(140,140), D3DXCOLOR (0.67,0.24,0.31,1.0), GWT_BUTTON);
+	if (!parentBox2->AddWindow(button))
+		return false;
+	button = new GUIButton(Vector2(228,20), Vector2(140,140), D3DXCOLOR (0.17,0.64,0.31,1.0), GWT_BUTTON);
+	if (!parentBox2->AddWindow(button))
+		return false;
+	button = new GUIButton(Vector2(412,20), Vector2(140,140), D3DXCOLOR (0.17,0.24,0.91,1.0), GWT_BUTTON);
+	if (!parentBox2->AddWindow(button))
+		return false;
+	button = new GUIButton(Vector2(596,20), Vector2(140,140), D3DXCOLOR (0.47,0.24,0.81,1.0), GWT_BUTTON);
+	if (!parentBox2->AddWindow(button))
+		return false;
+
+	graphicsManager->UpdateGUIVertexBuffer();
 }
 // Called at termination, free memory, clear pointers, etc
 void GameEngine::Shutdown()

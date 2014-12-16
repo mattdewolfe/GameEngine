@@ -129,7 +129,16 @@
     <ClInclude Include="include\GUI\GUIStateManager.h">
       <Filter>Header Files\GUI</Filter>
     </ClInclude>
-    <ClInclude Include="GUIWindow.h">
+    <ClInclude Include="include\GUI\GUIBox.h">
+      <Filter>Header Files\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="include\GUI\GUIWindow.h">
+      <Filter>Header Files\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="include\GUI\Vertex.h">
+      <Filter>Header Files\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="include\GUI\GUIButton.h">
       <Filter>Header Files\GUI</Filter>
     </ClInclude>
   </ItemGroup>
@@ -171,6 +180,15 @@
       <Filter>Source Files\GUI</Filter>
     </ClCompile>
     <ClCompile Include="src\GUI\GUIStateManager.cpp">
+      <Filter>Source Files\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GUI\GUIBox.cpp">
+      <Filter>Source Files\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GUI\GUIButton.cpp">
+      <Filter>Source Files\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GUI\GUIWindow.cpp">
       <Filter>Source Files\GUI</Filter>
     </ClCompile>
   </ItemGroup>

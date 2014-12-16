@@ -14,6 +14,10 @@
 #include "DebugManager.h"
 #include "Script\ScriptManager.h"
 #include "Graphics\Camera.h"
+// Removed, circular dependencies. Forward declared instead
+// TODO find out if this is the proper solution to circular dependencies
+//#include "GUI\GUIManager.h"
+class GUIManager;
 #include "Timer.h"
 
 class GameEngine
@@ -43,6 +47,8 @@ public:
 	LRESULT CALLBACK  MessageHandler(HWND _hwnd, UINT _umsg, WPARAM _wparam, LPARAM _lparam);
 	// Used to determine time between frames
 	void CalculateFPS();
+	// Temporary function to set up the demo GUI
+	bool BuildTestGUI();
 
 	//get/sets.
 	AudioManager* GetAudioManager()
@@ -67,6 +73,7 @@ private:
 	DebugManager* debugManager;
 	ResourceLoader* resourceLoader;
 	GraphicsManager* graphicsManager;
+	//GUIManager* guiManager;
 	Camera* camera;
 
 	Timer timer;
